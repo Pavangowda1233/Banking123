@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced Neon Navbar</title>
+
+<style>
+
+/* RESET */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Poppins",sans-serif;
+}
+
+/* BEAUTIFUL BODY */
+body{
+  background: linear-gradient(135deg, #a8c0ff, #3f2b96);
+  height:150vh;
+  padding-top:90px;
+  margin-top: 80px;
+}
+
+/* FULL FIXED NAV */
+nav{
+  position:fixed;
+  top:0;
+  left:0;                   /* FIXED LEFT */
+  width:100%;
+  background:linear-gradient(135deg, #6f00ff, #0097ff);
+  backdrop-filter:blur(20px);
+  padding:16px 28px;        /* REDUCED TO FIT DESKTOP */
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  box-shadow:0 5px 25px rgba(0,0,0,0.35);
+  z-index:2000;
+}
+
+/* LOGO */
+.logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.logo img{
+  width:130px;
+  height:auto;
+}
+
+/* NAV LINKS — DESKTOP */
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:30px;
+  margin-left:auto;        /* CLEAN ALIGNMENT FIX */
+}
+
+/* NAV LINK STYLE */
+.nav-links a, .dropdown-btn{
+  font-size:16px;
+  font-weight:600;
+  color:white;
+  text-decoration:none;
+  padding:10px 14px;
+  border-radius:8px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+/* HOVER GLOW */
+.nav-links a:hover, .dropdown-btn:hover{
+  background:rgba(255,255,255,0.25);
+  box-shadow:0 0 15px rgba(255,255,255,0.7);
+  transform:translateY(-3px);
+}
+
+/* DROPDOWN */
+.dropdown{
+  position:relative;
+}
+
+.dropdown-content{
+  background:white;
+  position:absolute;
+  top:50px;
+  left:0;
+  width:160px;
+  border-radius:12px;
+  box-shadow:0 8px 25px rgba(0,0,0,0.25);
+  display:none;
+  flex-direction:column;
+  overflow:hidden;
+}
+
+.dropdown-content a{
+  padding:12px 20px;
+  font-size:15px;
+  font-weight:500;
+  color:#333;
+}
+
+.dropdown-content a:hover{
+  background:#ececff;
+  color:#4b00ff;
+}
+
+/* HAMBURGER */
+.hamburger{
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  cursor:pointer;
+}
+.hamburger span{
+  width:28px;
+  height:3px;
+  background:white;
+  border-radius:5px;
+  transition:0.4s;
+}
+
+/* MOBILE VIEW */
+@media(max-width:850px){
+
+  .hamburger{ display:flex; }
+
+  /* mobile menu */
+  .nav-links{
+    position:fixed;
+    top:90px;
+    right:-100%;
+    width:260px;
+    height:100vh;
+    background:linear-gradient(135deg, #3f2b96, #6f00ff);
+    flex-direction:column;
+    padding-top:50px;
+    gap:25px;
+    box-shadow:-10px 0 25px rgba(0,0,0,0.3);
+    transition:0.5s;
+  }
+
+  .nav-links.show{
+    right:0;
+  }
+
+  .dropdown-content{
+    position:relative;
+    top:0;
+    width:100%;
+    box-shadow:none;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+
+  <!-- LOGO -->
+  <div class="logo">
+    <img src="Screenshot (7) (1) (1).webp">
+  </div>
+
+  <!-- HAMBURGER -->
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- NAV LINKS -->
+   <div class="nav-links" id="menu">
+
+    <div class="dropdown">
+      <div class="dropdown-btn" onclick="toggleDropdown()">Home ▾</div>
+      <div class="dropdown-content" id="dropMenu">
+        <a href="index.html">Home 1</a>
+        <a href="Home2.html">Home 2</a>
+      </div>
+    </div>
+
+    <a href="dashboard.html">Dashboard</a>
+     <a href="account.html">Account</a>
+    <a href="loans.html">Loans</a>
+    <a href="investment.html">Investment</a>
+    <a href="cards.html">Cards</a>
+    <a href="carreer.html">Career</a>
+     <a href="signup.html">Signup</a>
+  </div>
+</nav>
+
+
+
+<script>
+/* MOBILE MENU OPEN/CLOSE */
+function toggleMenu(){
+  document.getElementById("menu").classList.toggle("show");
+}
+
+/* DROPDOWN CLICK OPEN/CLOSE */
+function toggleDropdown(){
+  const drop = document.getElementById("dropMenu");
+  drop.style.display = (drop.style.display === "flex") ? "none" : "flex";
+}
+</script>
+
+<style>
+*{
+ margin:0; padding:0;
+ box-sizing:border-box;
+ font-family:"Poppins",sans-serif;
+}
+
+body{
+ background:#f0f4ff;
+ color:#0b1a33;
+ padding:20px;
+ margin-top: 80px;
+}
+
+/* HERO SECTION */
+.hero{
+ background:linear-gradient(135deg,#0066ff,#00d4ff);
+ padding:40px 25px;
+ border-radius:20px;
+ color:white;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ flex-wrap:wrap;
+ gap:20px;
+ box-shadow:0 20px 40px rgba(0,0,0,0.2);
+}
+
+.hero-text{
+ max-width:500px;
+}
+
+.hero-text h1{
+ font-size:36px;
+ font-weight:700;
+ line-height:1.3;
+}
+
+.hero-text p{
+ margin-top:10px;
+ opacity:.9;
+ font-size:15px;
+}
+
+.hero img{
+ width:320px;
+ border-radius:20px;
+ box-shadow:0 15px 35px rgba(0,0,0,0.25);
+}
+
+/* SECTION TITLE */
+.section-title{
+ font-size:26px;
+ font-weight:700;
+ margin:30px 0 15px;
+}
+
+/* CULTURE SECTION */
+.culture-grid{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:20px;
+}
+@media(max-width:750px){
+ .culture-grid{ grid-template-columns:1fr; }
+}
+
+.culture-card{
+ background:white;
+ padding:20px;
+ border-radius:18px;
+ box-shadow:0 12px 30px rgba(0,0,0,0.1);
+}
+
+.culture-card img{
+ width:100%;
+ border-radius:14px;
+ margin-bottom:12px;
+}
+
+/* BENEFITS */
+.benefit-box{
+ display:flex;
+ gap:15px;
+ background:white;
+ padding:20px;
+ border-radius:16px;
+ box-shadow:0 10px 25px rgba(0,0,0,0.1);
+ margin-bottom:15px;
+}
+
+.benefit-icon{
+ font-size:32px;
+ color:#006cff;
+}
+
+/* JOB LISTINGS */
+.job-card{
+ background:white;
+ padding:20px;
+ border-radius:18px;
+ box-shadow:0 12px 35px rgba(0,0,0,0.1);
+ margin-bottom:20px;
+}
+
+.job-title{
+ font-size:20px;
+ font-weight:600;
+}
+
+.job-info{
+ font-size:14px;
+ opacity:.7;
+ margin:6px 0 12px;
+}
+
+.apply-btn{
+ display:inline-block;
+ padding:12px 20px;
+ background:#0066ff;
+ color:white;
+ font-size:14px;
+ border-radius:10px;
+ font-weight:600;
+ text-decoration:none;
+}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+ .hero-text h1{ font-size:28px; }
+ .hero img{ width:100%; }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HERO SECTION -->
+<div class="hero">
+ <div class="hero-text">
+   <h1>Build Your Future With Stackly Bank</h1>
+   <p>Join one of India's fastest-growing digital banking teams.  
+   We’re building secure, smart and human-friendly financial solutions.</p>
+ </div>
+
+ <img src="pav2.webp">
+</div>
+
+<!-- CULTURE -->
+<div class="section-title">Life at Stackly Bank</div>
+
+<div class="culture-grid">
+
+ <div class="culture-card">
+   <img src="pav3.webp">
+   <h3>Innovative Workspace</h3>
+   <p>We work with passion, creativity and technology to build the future of digital banking.</p>
+ </div>
+
+ <div class="culture-card">
+   <img src="pav4.webp">
+   <h3>Collaborative Team</h3>
+   <p>From engineering to customer support, teamwork drives everything we deliver.</p>
+ </div>
+
+</div>
+
+<!-- BENEFITS -->
+<div class="section-title">Employee Benefits</div>
+
+<div class="benefit-box">
+ <div class="benefit-icon">💼</div>
+ <div>
+  <h3>Career Growth</h3>
+  <p>Training, mentorship & internal promotions.</p>
+ </div>
+</div>
+
+<div class="benefit-box">
+ <div class="benefit-icon">🏥</div>
+ <div>
+  <h3>Insurance & Healthcare</h3>
+  <p>Full medical coverage for employees & family.</p>
+ </div>
+</div>
+
+<div class="benefit-box">
+ <div class="benefit-icon">🕒</div>
+ <div>
+  <h3>Flexible Working</h3>
+  <p>Hybrid work options & supportive environment.</p>
+ </div>
+</div>
+
+<!-- JOBS -->
+<div class="section-title">Open Positions</div>
+
+<div class="job-card">
+ <div class="job-title">Frontend Developer</div>
+ <div class="job-info">Bengaluru • Full-time • 2+ years exp</div>
+ <a href="404.html" class="apply-btn">Apply Now</a>
+</div>
+
+<div class="job-card">
+ <div class="job-title">Customer Support Executive</div>
+ <div class="job-info">Hyderabad • Full-time • Freshers Welcome</div>
+ <a href="404.html" class="apply-btn">Apply Now</a>
+</div>
+
+<div class="job-card">
+ <div class="job-title">Credit Risk Analyst</div>
+ <div class="job-info">Mumbai • Full-time • 3+ years exp</div>
+ <a href="404.html" class="apply-btn">Apply Now</a>
+</div>
+
+</body>
+</html>
+
+<style>
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Poppins",sans-serif;}
+
+body{
+ background:#f0f4ff;
+ color:#0a1b33;
+ padding:20px;
+}
+
+/* HERO SECTION */
+.hero{
+ background:linear-gradient(135deg,#0048ff,#00b4ff);
+ padding:40px 22px;
+ border-radius:25px;
+ color:white;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ flex-wrap:wrap;
+ gap:20px;
+ box-shadow:0 25px 45px rgba(0,0,0,0.25);
+}
+
+.hero-text h1{
+ font-size:38px;
+ font-weight:700;
+ line-height:1.3;
+ max-width:480px;
+}
+
+.hero-text p{
+ opacity:.9;
+ margin-top:10px;
+ max-width:450px;
+}
+
+.hero img{
+ width:330px;
+ border-radius:20px;
+ box-shadow:0 20px 40px rgba(0,0,0,0.3);
+}
+
+/* SECTION TITLE */
+.section-title{
+ font-size:28px;
+ font-weight:700;
+ margin:35px 0 15px;
+}
+
+/* MISSION BLOCK */
+.mission-box{
+ background:white;
+ padding:22px;
+ border-radius:18px;
+ box-shadow:0 12px 28px rgba(0,0,0,0.15);
+ margin-bottom:15px;
+}
+
+.values-grid{
+ display:grid;
+ grid-template-columns:1fr 1fr 1fr;
+ gap:20px;
+}
+@media(max-width:800px){
+ .values-grid{grid-template-columns:1fr;}
+}
+
+.value-card{
+ background:#f7faff;
+ padding:18px;
+ border-radius:14px;
+ border:1px solid #dde6ff;
+}
+
+.value-card h3{
+ font-size:18px;
+ font-weight:600;
+ margin-bottom:6px;
+}
+
+/* TESTIMONIALS */
+.testimonial{
+ background:white;
+ padding:20px;
+ border-radius:18px;
+ box-shadow:0 15px 35px rgba(0,0,0,0.1);
+ margin-bottom:18px;
+ display:flex;
+ gap:18px;
+ align-items:center;
+}
+
+.testimonial img{
+ width:70px;
+ height:70px;
+ border-radius:50%;
+ object-fit:cover;
+}
+
+.testimonial p{
+ font-size:14px;
+ opacity:.8;
+}
+
+/* HIRING TIMELINE */
+.timeline{
+ margin-top:10px;
+}
+
+.step{
+ background:white;
+ padding:18px;
+ border-radius:14px;
+ margin-bottom:12px;
+ box-shadow:0 10px 25px rgba(0,0,0,0.08);
+ border-left:8px solid #0066ff;
+}
+
+.step h4{
+ font-size:18px;
+ margin-bottom:6px;
+}
+
+/* OFFICE LOCATIONS */
+.office-card{
+ background:white;
+ padding:18px;
+ border-radius:18px;
+ margin-bottom:16px;
+ box-shadow:0 12px 30px rgba(0,0,0,0.08);
+}
+
+.office-card img{
+ width:80%;
+ border-radius:12px;
+ margin-bottom:10px;
+}
+
+/* JOB CARD */
+.job-card{
+ background:white;
+ padding:20px;
+ border-radius:18px;
+ box-shadow:0 12px 35px rgba(0,0,0,0.1);
+ margin-bottom:20px;
+}
+
+.job-title{
+ font-size:20px;
+ font-weight:600;
+}
+
+.job-info{
+ font-size:14px;
+ opacity:.7;
+ margin:6px 0 12px;
+}
+
+.apply-btn{
+ display:inline-block;
+ padding:12px 22px;
+ background:#0066ff;
+ color:white;
+ border-radius:10px;
+ font-size:14px;
+ font-weight:600;
+ text-decoration:none;
+}
+
+/* CULTURE SECTION */
+.culture-grid{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:20px;
+}
+@media(max-width:800px){
+ .culture-grid{grid-template-columns:1fr;}
+}
+
+.culture-card{
+ background:white;
+ padding:20px;
+ border-radius:18px;
+ box-shadow:0 10px 25px rgba(0,0,0,0.12);
+}
+
+.culture-card img{
+ width:100%;
+ height:200px;
+ object-fit:cover;
+ border-radius:14px;
+ margin-bottom:12px;
+}
+
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+ <div class="hero-text">
+   <h1>Join Stackly Bank & Build the Future of Digital Finance</h1>
+   <p>We empower millions of people with smart banking tools.  
+   Be part of a team shaping the next generation of financial technology.</p>
+ </div>
+
+ <img src="pav6.webp">
+</div>
+
+<!-- MISSION -->
+<div class="section-title">Our Mission & Values</div>
+
+<div class="mission-box">
+ <p>At Stackly Bank, our mission is to simplify financial services by merging trust, innovation, and technology.  
+ We value teamwork, transparency, and creating meaningful solutions for every user.</p>
+</div>
+
+<div class="values-grid">
+ <div class="value-card">
+   <h3>Innovation</h3>
+   <p>We push boundaries to create smarter digital solutions.</p>
+ </div>
+ <div class="value-card">
+   <h3>Customer First</h3>
+   <p>We build banking that is simple, human and secure.</p>
+ </div>
+ <div class="value-card">
+   <h3>Integrity</h3>
+   <p>Always honest. Always responsible. Always ethical.</p>
+ </div>
+</div>
+
+<!-- CULTURE -->
+<div class="section-title">Life at Stackly</div>
+
+<div class="culture-grid">
+
+ <div class="culture-card">
+   <img src="pav7.webp">
+   <h3>Team Collaboration</h3>
+   <p>We work in an open, transparent, inclusive environment that encourages ideas & ownership.</p>
+ </div>
+
+ <div class="culture-card">
+   <img src="pav10.webp">
+   <h3>Modern Workspace</h3>
+   <p>Smart offices designed for productivity, creativity & innovation.</p>
+ </div>
+
+</div>
+
+<!-- TESTIMONIALS -->
+<div class="section-title">Employee Stories</div>
+
+<div class="testimonial">
+ <img src="Hr.webp">
+ <p>"Stackly Bank helped me grow from intern to senior developer.  
+ The work culture is dynamic, supportive, and always evolving."</p>
+</div>
+
+<div class="testimonial">
+ <img src="hr4webp.avif">
+ <p>"Every day feels meaningful here.  
+ We're creating financial tools that genuinely help people."</p>
+</div>
+
+<!-- HIRING PROCESS -->
+<div class="section-title">Hiring Process</div>
+
+<div class="timeline">
+ <div class="step">
+  <h4>1. Application Screening</h4>
+  <p>Our HR team reviews your application based on skills & fit.</p>
+ </div>
+
+ <div class="step">
+  <h4>2. Technical & HR Rounds</h4>
+  <p>Shortlisted candidates go through interviews designed to test creativity & knowledge.</p>
+ </div>
+
+ <div class="step">
+  <h4>3. Final Selection</h4>
+  <p>We evaluate your overall profile & share the offer letter.</p>
+ </div>
+</div>
+
+<!-- OFFICE LOCATIONS -->
+<div class="section-title">Our Offices</div>
+
+<div class="office-card">
+ <img src="nest5.webp">
+ <h3>Bengaluru – HQ</h3>
+ <p>Innovation hub for engineering & product teams.</p>
+</div>
+
+<div class="office-card">
+ <img src="nest.webp">
+ <h3>Mumbai</h3>
+ <p>Finance, operations & corporate division.</p>
+</div>
+
+<!-- JOBS -->
+<div class="section-title">Open Positions</div>
+
+<div class="job-card">
+ <div class="job-title">Senior Frontend Engineer</div>
+ <div class="job-info">Bengaluru • Full-time • 4+ yrs</div>
+  <a href="404.html" class="apply-btn">Apply Now</a>
+</div>
+
+<div class="job-card">
+ <div class="job-title">Data Analyst</div>
+ <div class="job-info">Hyderabad • Full-time • 2+ yrs</div>
+  <a href="404.html" class="apply-btn">Apply Now</a>
+</div>
+
+<div class="job-card">
+ <div class="job-title">Customer Support Executive</div>
+ <div class="job-info">Remote • Freshers Welcome</div>
+  <a href="404.html" class="apply-btn">Apply Now</a>
+</div>
+
+<div class="job-card">
+ <div class="job-title">Banking Operations Associate</div>
+ <div class="job-info">Mumbai • Full-time • 1+ yrs</div>
+  <a href="404.html" class="apply-btn">Apply Now</a>
+</div>
+
+<!-- INTERNSHIPS -->
+<div class="section-title">Internship Opportunities</div>
+
+<div class="job-card">
+ <div class="job-title">Software Development Intern</div>
+ <div class="job-info">Bengaluru • 3–6 Months</div>
+  <a href="404.html" class="apply-btn">Apply Now</a>
+</div>
+
+<div class="job-card">
+ <div class="job-title">Marketing & Social Media Intern</div>
+ <div class="job-info">Remote • 3 Months</div>
+  <a href="404.html" class="apply-btn">Apply Now</a>
+</div>
+
+</body>
+</html>
+
+</body>
+</html>
+<style>
+/* ================= FOOTER START ================= */
+
+footer{
+ background: linear-gradient(180deg, #1e1e3f, #342e6a, #4e2b8c);
+
+
+  color:#fff;
+  padding:70px 6%;
+  margin-top:80px;
+  position:relative;
+  overflow:hidden;
+  font-family:"Poppins",sans-serif;
+}
+
+/* Soft glow */
+footer::before{
+  content:"";
+  position:absolute;
+  top:-120px;
+  left:0;
+  width:120%;
+  height:220px;
+ 
+}
+
+
+/* GRID LAYOUT FIXED */
+.footer-container{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap:50px;
+  position:relative;
+  z-index:2;
+}
+
+/* LEFT */
+.footer-left img{
+  height:58px;
+  margin-bottom:12px;
+  object-fit:contain;
+}
+
+.footer-left p{
+  opacity:0.85;
+  margin:12px 0 18px;
+  line-height:1.6;
+  font-size:14px;
+  max-width:280px;
+}
+
+/* SOCIAL ICONS */
+.social-icons{
+  display:flex;
+  gap:14px;
+  margin-top:12px;
+}
+.social-icons a{
+  height:42px;width:42px;
+  border-radius:50%;
+  background:#ffffff20;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  transition:.3s;
+}
+.social-icons a:hover{
+  background:#00eaff;
+  transform:translateY(-6px) scale(1.1);
+}
+.social-icons img{
+  height:20px;width:20px;
+}
+
+/* CENTER LINKS */
+.footer-links h3,
+.footer-contact h3{
+  margin-bottom:16px;
+  font-size:22px;
+  color:#00eaff;
+}
+
+.footer-links a{
+  display:block;
+  text-decoration:none;
+  color:#cbd5e1;
+  margin:6px 0;
+  font-size:15px;
+  transition:.3s;
+}
+.footer-links a:hover{
+  transform:translateX(6px);
+  color:#00eaff;
+}
+
+/* RIGHT CONTACT */
+.footer-contact p{
+  margin:6px 0;
+  opacity:.9;
+  font-size:15px;
+}
+
+/* SUBSCRIBE */
+.subscribe-box{
+  margin-top:16px;
+  display:flex;
+  width:100%;
+  max-width:320px;
+}
+.subscribe-box input{
+  flex:1;
+  padding:12px 14px;
+  background:#ffffff12;
+  border:none;
+  border-radius:6px 0 0 6px;
+  color:white;
+  outline:none;
+}
+.subscribe-box button{
+  padding:12px 20px;
+  background:#00eaff;
+  border:none;
+  color:#001;
+  font-weight:700;
+  border-radius:0 6px 6px 0;
+  cursor:pointer;
+}
+
+/* BOTTOM COPYRIGHT */
+.footer-bottom{
+  text-align:center;
+  margin-top:40px;
+  padding-top:18px;
+  border-top:1px solid #1e293b;
+  opacity:.8;
+  font-size:14px;
+}
+
+/* MOBILE VIEW FIX */
+/* MOBILE VIEW FIX */
+@media(max-width:900px){
+  
+  .footer-container{
+    grid-template-columns:1fr;
+    gap:45px;
+    text-align:center;
+  }
+
+  /* Left section */
+  .footer-left p{
+    margin:auto;
+  }
+
+  .social-icons{
+    justify-content:center;
+  }
+
+  /* QUICK LINKS */
+  .footer-links{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;   /* center block */
+  }
+
+  .footer-links h3{
+    text-align:center;
+    width:100%;
+  }
+
+  .footer-links a{
+    width:100%;
+    max-width:220px;      /* keeps good width */
+    text-align:start;     /* TEXT LEFT */
+    margin:4px 0;
+    padding-left:0;
+    margin-left: 130px;
+  }
+
+  /* Contact section */
+  .footer-contact{
+    text-align:center;
+  }
+
+  /* Subscribe input responsiveness */
+  .subscribe-box{
+    flex-direction:column;
+    max-width:none;
+  }
+  .subscribe-box input{
+    width:100%;
+    border-radius:6px;
+    margin-bottom:10px;
+  }
+  .subscribe-box button{
+    width:100%;
+    border-radius:6px;
+  }
+}
+
+</style>
+
+<footer>
+  <div class="footer-container">
+
+    <!-- LEFT -->
+    <div class="footer-left">
+      <img src="Screenshot (7) (1) (1).webp" alt="Company Logo">
+      <p>Our digital banking platform provides customers with 24/7 access to essential financial services...</p>
+
+      <div class="social-icons">
+        <a href="404.html"><img src="facebook.webp" alt="Facebook"></a>
+        <a href="404.html"><img src="twitter-logo.webp" alt="Twitter"></a>
+        <a href="404.html"><img src="linkedin.webp" alt="LinkedIn"></a>
+        <a href="404.html"><img src="instagram.webp" alt="Instagram"></a>
+      </div>
+    </div>
+
+    <!-- CENTER -->
+    <div class="footer-links">
+      <h3>Quick Links</h3>
+      <a href="index.html">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="account.html">Account</a>
+      <a href="loans.html">Loans</a>
+      <a href="investment.html">Investment</a>
+      <a href="cards.html">Cards</a>
+      <a href="carreer.html">Career</a>
+      <a href="signup.html">Signup</a>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="footer-contact">
+      <h3>Contact Us</h3>
+      <p>📍 Bengaluru, Karnataka</p>
+      <p>📞 +91 98765 43210</p>
+      <p>✉ support@stacklybank.com</p>
+
+      <form action="404.html" method="get" class="subscribe-box">
+        <input type="email" name="email" placeholder="Enter your email" required>
+        <button type="submit">Join</button>
+      </form>
+    </div>
+
+  </div>
+
+  <p class="footer-bottom">© 2025 Stackly Bank. All Rights Reserved.</p>
+</footer>
+
+<!-- ================= FOOTER END ================= -->

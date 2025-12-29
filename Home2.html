@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced Neon Navbar</title>
+
+<style>
+
+/* RESET */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Poppins",sans-serif;
+}
+
+/* BEAUTIFUL BODY */
+body{
+  background: linear-gradient(135deg, #a8c0ff, #3f2b96);
+  height:150vh;
+  padding-top:90px;
+
+}
+
+/* FULL FIXED NAV */
+nav{
+  position:fixed;
+  top:0;
+  left:0;                   /* FIXED LEFT */
+  width:100%;
+  background:linear-gradient(135deg, #6f00ff, #0097ff);
+  backdrop-filter:blur(20px);
+  padding:16px 28px;        /* REDUCED TO FIT DESKTOP */
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  box-shadow:0 5px 25px rgba(0,0,0,0.35);
+  z-index:2000;
+}
+
+/* LOGO */
+.logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.logo img{
+  width:130px;
+  height:auto;
+}
+/* ===== LOADER ===== */
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(153, 16, 91);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 9999;
+  animation: fadeOut 1s ease 1s forwards;
+}
+
+.loader-content {
+  text-align: center;
+  position: relative;
+}
+
+.loader-logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  animation: spin 3s infinite linear;
+  z-index: 2;
+  position: relative;
+}
+
+.pulse-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120px;
+  height: 120px;
+  transform: translate(-50%, -50%);
+  border: 3px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  animation: pulse 1.5s infinite ease-in-out;
+  z-index: 1;
+}
+
+#loader p {
+  color: white;
+  margin-top: 15px;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  animation: fadeText 3s infinite alternate;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.7; }
+  70% { transform: translate(-50%, -50%) scale(1.3); opacity: 0.2; }
+  100% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.7; }
+}
+
+@keyframes fadeText {
+  from { opacity: 0.6; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  to { opacity: 0; visibility: hidden; }
+}
+
+/* NAV LINKS — DESKTOP */
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:30px;
+  margin-left:auto;        /* CLEAN ALIGNMENT FIX */
+}
+
+/* NAV LINK STYLE */
+.nav-links a, .dropdown-btn{
+  font-size:16px;
+  font-weight:600;
+  color:white;
+  text-decoration:none;
+  padding:10px 14px;
+  border-radius:8px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+/* HOVER GLOW */
+.nav-links a:hover, .dropdown-btn:hover{
+  background:rgba(255,255,255,0.25);
+  box-shadow:0 0 15px rgba(255,255,255,0.7);
+  transform:translateY(-3px);
+}
+
+/* DROPDOWN */
+.dropdown{
+  position:relative;
+}
+
+.dropdown-content{
+  background:white;
+  position:absolute;
+  top:50px;
+  left:0;
+  width:160px;
+  border-radius:12px;
+  box-shadow:0 8px 25px rgba(0,0,0,0.25);
+  display:none;
+  flex-direction:column;
+  overflow:hidden;
+}
+
+.dropdown-content a{
+  padding:12px 20px;
+  font-size:15px;
+  font-weight:500;
+  color:#333;
+}
+
+.dropdown-content a:hover{
+  background:#ececff;
+  color:#4b00ff;
+}
+
+/* HAMBURGER */
+.hamburger{
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  cursor:pointer;
+}
+.hamburger span{
+  width:28px;
+  height:3px;
+  background:white;
+  border-radius:5px;
+  transition:0.4s;
+}
+
+/* MOBILE VIEW */
+@media(max-width:850px){
+
+  .hamburger{ display:flex; }
+
+  /* mobile menu */
+  .nav-links{
+    position:fixed;
+    top:90px;
+    right:-100%;
+    width:260px;
+    height:100vh;
+    background:linear-gradient(135deg, #3f2b96, #6f00ff);
+    flex-direction:column;
+    padding-top:50px;
+    gap:25px;
+    box-shadow:-10px 0 25px rgba(0,0,0,0.3);
+    transition:0.5s;
+  }
+
+  .nav-links.show{
+    right:0;
+  }
+
+  .dropdown-content{
+    position:relative;
+    top:0;
+    width:100%;
+    box-shadow:none;
+  }
+}
+
+</style>
+</head>
+
+<body>
+<div id="loader">
+      <div class="loader-content">
+        <div class="pulse-ring"></div>
+        <p>Loading Banking..</p>
+      </div>
+    </div>
+<!-- NAVBAR -->
+<nav>
+
+  <!-- LOGO -->
+  <div class="logo">
+    <img src="Screenshot (7) (1) (1).webp">
+  </div>
+
+  <!-- HAMBURGER -->
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- NAV LINKS -->
+   <div class="nav-links" id="menu">
+
+    <div class="dropdown">
+      <div class="dropdown-btn" onclick="toggleDropdown()">Home ▾</div>
+      <div class="dropdown-content" id="dropMenu">
+        <a href="index.html">Home 1</a>
+        <a href="Home2.html">Home 2</a>
+      </div>
+    </div>
+
+    <a href="netbanking.html">Netbanking</a>
+     <a href="services.html">Services</a>
+    <a href="upi.html">UPI</a>
+    <a href="about.html">About</a>
+    <a href="blog.html">Blog</a>
+     <a href="contact.html">Contact</a>
+      <a href="signup1.html">signup</a>
+  </div>
+</nav>
+
+
+
+<script>
+/* MOBILE MENU OPEN/CLOSE */
+function toggleMenu(){
+  document.getElementById("menu").classList.toggle("show");
+}
+
+/* DROPDOWN CLICK OPEN/CLOSE */
+function toggleDropdown(){
+  const drop = document.getElementById("dropMenu");
+  drop.style.display = (drop.style.display === "flex") ? "none" : "flex";
+}
+</script>
+
+
+
+  <!-- ScrollReveal -->
+  <script src="https://unpkg.com/scrollreveal"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      color: #f9fafb;
+      background: #020617;
+      overflow-x: hidden;
+    }
+
+    /* Animated colorful background */
+    .bg {
+      position: fixed;
+      inset: 0;
+      z-index: -3;
+      background: linear-gradient(-45deg, #0ea5e9, #22c55e, #eab308, #fb7185);
+      background-size: 400% 400%;
+      animation: gradientMove 18s ease infinite;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Soft blobs */
+    .blob {
+      position: fixed;
+      border-radius: 999px;
+      filter: blur(40px);
+      opacity: 0.5;
+      z-index: -2;
+    }
+    .blob-1 {
+      width: 280px; height: 280px;
+      background: #22c55e;
+      top: -40px; left: -40px;
+      animation: blobFloat 20s ease-in-out infinite;
+    }
+    .blob-2 {
+      width: 260px; height: 260px;
+      background: #3b82f6;
+      bottom: -70px; right: -40px;
+      animation: blobFloat 24s ease-in-out infinite;
+    }
+    .blob-3 {
+      width: 220px; height: 220px;
+      background: #a855f7;
+      top: 50%; right: 10%;
+      animation: blobFloat 26s ease-in-out infinite;
+    }
+
+    @keyframes blobFloat {
+      0%,100% { transform: translate3d(0,0,0); }
+      50% { transform: translate3d(20px,-40px,0); }
+    }
+
+    /* Page layout */
+    .page {
+      min-height: 100vh;
+      padding: 80px 18px 64px;
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .page-inner {
+      width: 100%;
+      max-width: 1040px;
+      margin: 0 auto;
+      background: rgba(15, 23, 42, 0.80);
+      border-radius: 28px;
+      padding: 24px 18px;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 18px 60px rgba(15, 23, 42, 0.9);
+    }
+
+    .page-header-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #a5f3fc;
+      margin-bottom: 8px;
+    }
+    .k-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #22c55e, #0ea5e9);
+    }
+
+    h1, h2 {
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    h1 { font-size: 28px; margin-bottom: 8px; }
+    h2 { font-size: 24px; margin-bottom: 8px; }
+
+    .page p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #e2f3ff;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+      margin-bottom: 6px;
+    }
+    .chip {
+      font-size: 11px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.8);
+      background: rgba(15, 23, 42, 0.9);
+      color: #e5e7eb;
+    }
+
+    /* “Photo” / visual area styled as phone or card */
+    .visual {
+      margin-top: 20px;
+      width: 100%;
+      max-width: 320px;
+      border-radius: 26px;
+      padding: 10px;
+      background: radial-gradient(circle at top, #22c55e, #020617);
+      border: 2px solid rgba(148, 163, 184, 0.9);
+      box-shadow: 0 16px 46px rgba(15, 23, 42, 0.9);
+      overflow: hidden;
+    }
+
+    .visual-inner {
+      border-radius: 20px;
+      background: radial-gradient(circle at top, rgba(15,23,42,0.98), rgba(2,6,23,0.98));
+      padding: 14px 14px 12px;
+      color: #f9fafb;
+      position: relative;
+    }
+
+    .visual-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 10px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.7);
+    }
+
+    .visual-title {
+      font-size: 13px;
+      opacity: 0.8;
+    }
+    .visual-main {
+      font-size: 20px;
+      font-weight: 700;
+      margin-top: 6px;
+    }
+
+    .visual-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 10px;
+      font-size: 11px;
+    }
+
+    .visual-tag-pill {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.85);
+      font-size: 10px;
+    }
+
+    .visual-list {
+      margin-top: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .visual-item {
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      padding-bottom: 4px;
+      border-bottom: 1px dashed rgba(148, 163, 184, 0.5);
+    }
+
+    .visual-foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 10px;
+      margin-top: 10px;
+      opacity: 0.85;
+    }
+
+    /* Page specific accent colors */
+    .page-1 .visual { background: radial-gradient(circle at top, #22c55e, #0f172a); }
+    .page-2 .visual { background: radial-gradient(circle at top, #38bdf8, #020617); }
+    .page-3 .visual { background: radial-gradient(circle at top, #6366f1, #020617); }
+    .page-4 .visual { background: radial-gradient(circle at top, #e11d48, #020617); }
+    .page-5 .visual { background: radial-gradient(circle at top, #22c55e, #020617); }
+    .page-6 .visual { background: radial-gradient(circle at top, #eab308, #020617); }
+    .page-7 .visual { background: radial-gradient(circle at top, #0ea5e9, #020617); }
+    .page-8 .visual { background: radial-gradient(circle at top, #a855f7, #020617); }
+
+    .scroll-tip {
+      position: absolute;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 11px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #e0f2fe;
+      opacity: 0.9;
+    }
+    .scroll-tip span {
+      width: 16px; height: 24px;
+      border-radius: 999px;
+      border: 1px solid #e0f2fe;
+      position: relative;
+    }
+    .scroll-tip span::after {
+      content: "";
+      position: absolute;
+      left: 50%; top: 6px;
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: #e0f2fe;
+      transform: translateX(-50%);
+      animation: scrollDot 1.4s ease-in-out infinite;
+    }
+    @keyframes scrollDot {
+      0% { transform: translate(-50%,0); opacity: 1; }
+      100% { transform: translate(-50%,9px); opacity: 0; }
+    }
+
+    /* Responsive: 2 columns on tablet+ */
+    @media (min-width: 768px) {
+      .page {
+        padding: 104px 24px 80px;
+      }
+      .page-inner {
+        padding: 26px 24px;
+        display: grid;
+        grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+        align-items: center;
+        gap: 24px;
+      }
+      .visual {
+        margin-top: 0;
+        margin-left: auto;
+      }
+    }
+    /* ===== CHIP BUTTON ROW ===== */
+.chip-row{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+  justify-content:center;
+  margin-top:30px;
+}
+
+/* remove default link style */
+.chip-row a{
+  text-decoration:none;
+}
+
+/* ===== CHIP BUTTON ===== */
+.chip{
+  display:inline-block;
+  padding:10px 18px;
+  border-radius:999px;
+  font-size:14px;
+  font-weight:500;
+  color:#38bdf8;
+  background:rgba(56,189,248,0.08);
+  border:1.5px solid rgba(56,189,248,0.4);
+  backdrop-filter:blur(10px);
+  transition:all .35s ease;
+  cursor:pointer;
+  white-space:nowrap;
+}
+
+/* HOVER ANIMATION */
+.chip:hover{
+  background:linear-gradient(135deg,#38bdf8,#22c55e);
+  color:#020617;
+  transform:translateY(-3px) scale(1.05);
+  box-shadow:0 10px 30px rgba(56,189,248,.4);
+}
+
+/* CLICK FEEL */
+.chip:active{
+  transform:scale(.96);
+}
+
+/* ===== MOBILE ===== */
+@media(max-width:600px){
+  .chip{
+    font-size:13px;
+    padding:9px 16px;
+  }
+}
+
+    /* ===== HERO IMAGE CONTAINER ===== */
+.hero-image{
+  max-width:320px;
+  margin:auto;
+  padding:12px;
+  border-radius:34px;
+  background:#020617;
+  border:2px solid rgba(148,163,184,.55);
+  position:relative;
+  margin-top: 80px;
+
+  /* glow + depth */
+  box-shadow:
+    0 0 30px rgba(56,189,248,.35),
+    0 25px 60px rgba(0,0,0,.85);
+
+  /* animation */
+  animation:heroFloat 4.5s ease-in-out infinite;
+}
+
+/* image */
+.hero-image img{
+  width:100%;
+  height:auto;
+  display:block;
+  border-radius:26px;
+}
+
+/* floating animation */
+@keyframes heroFloat{
+  0%{
+    transform:translateY(0) scale(1);
+  }
+  50%{
+    transform:translateY(-18px) scale(1.01);
+  }
+  100%{
+    transform:translateY(0) scale(1);
+  }
+}
+
+/* subtle shine overlay */
+.hero-image::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:34px;
+  background:linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(255,255,255,.15),
+    transparent 70%
+  );
+  opacity:.35;
+  pointer-events:none;
+}
+
+/* ===== MOBILE FIT ===== */
+@media(max-width:480px){
+  .hero-image{
+    max-width:260px;
+  }
+}
+
+  </style>
+</head>
+<div class="hero-image">
+  <img 
+    src="pav7.webp"
+    alt="Mobile Banking App">
+</div>
+
+<body>
+  <div class="bg"></div>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
+  <!-- Page 1: Digital onboarding -->
+  <section class="page page-1">
+    <div class="page-inner">
+      <div>
+        <div class="page-header-kicker">
+          <span class="k-dot"></span>
+          Stackly Bank
+        </div>
+        <h1>Open your account in under 5 minutes.</h1>
+        <p>
+          Start digital KYC, upload documents, and receive your account number instantly – all from your mobile without visiting any branch.
+        </p>
+        <div class="chip-row">
+        <a href="4041.html"><span class="chip">e‑KYC verification</span></a> 
+         <a href="4041.html"><span class="chip">Video verification</span></a> 
+        <a href="4041.html"><span class="chip">Paperless onboarding</span></a> 
+        </div>
+      </div>
+
+      <div class="visual">
+        <div class="visual-inner">
+          <div class="visual-badge">KYC in progress</div>
+          <div class="visual-title">Identity check</div>
+          <div class="visual-main">87% completed</div>
+          <div class="visual-row">
+            <span>Verify PAN & Aadhaar</span>
+            <span>● Secure</span>
+          </div>
+          <div class="visual-list">
+            <div class="visual-item">
+              <span>Step 1 · Mobile OTP</span>
+              <span>Completed</span>
+            </div>
+            <div class="visual-item">
+              <span>Step 2 · PAN upload</span>
+              <span>Completed</span>
+            </div>
+            <div class="visual-item">
+              <span>Step 3 · Selfie match</span>
+              <span>Pending</span>
+            </div>
+          </div>
+          <div class="visual-foot">
+            <span>Estimated time left</span>
+            <span>01:12 min</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-tip">
+      <span></span>
+      Scroll to explore banking
+    </div>
+  </section>
+
+  <!-- Page 2: Dashboard -->
+  <section class="page page-2">
+    <div class="page-inner">
+      <div>
+        <div class="page-header-kicker">
+          <span class="k-dot"></span>
+          Overview
+        </div>
+        <h2>See all your balances at one glance.</h2>
+        <p>
+          Track savings, salary, credit, and wallets in a single smart dashboard that updates in real time with every transaction.
+        </p>
+        <div class="chip-row">
+        <a href="4041.html"><span class="chip">Multi‑account view</span></a> 
+        <a href="4041.html"><span class="chip">Real‑time refresh</span></a> 
+      <a href="4041.html"><span class="chip">Smart widgets</span></a> 
+        </div>
+      </div>
+
+      <div class="visual">
+        <div class="visual-inner">
+          <div class="visual-badge">Today · 09:45</div>
+          <div class="visual-title">Total money across Stackly</div>
+          <div class="visual-main">₹3,87,240.90</div>
+          <div class="visual-row">
+            <span>Tap any account to dive in</span>
+            <span>● Live</span>
+          </div>
+          <div class="visual-list">
+            <div class="visual-item">
+              <span>Salary savings</span>
+              <span>₹1,82,000</span>
+            </div>
+            <div class="visual-item">
+              <span>Everyday wallet</span>
+              <span>₹67,240</span>
+            </div>
+            <div class="visual-item">
+              <span>Fixed deposits</span>
+              <span>₹1,38,000</span>
+            </div>
+          </div>
+          <div class="visual-foot">
+            <span>Next salary expected</span>
+            <span>₹78,000 · in 3 days</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Page 3: UPI & QR -->
+  <section class="page page-3">
+    <div class="page-inner">
+      <div>
+        <div class="page-header-kicker">
+          <span class="k-dot"></span>
+          Payments
+        </div>
+        <h2>UPI, QR and bill payments in one tap.</h2>
+        <p>
+          Send money using UPI ID or scan QR at any shop, while Stackly auto‑reminds you about upcoming bills and subscriptions.
+        </p>
+        <div class="chip-row">
+        <a href="4041.html"><span class="chip">UPI handle</span></a>
+         <a href="4041.html"><span class="chip">Auto‑pay bills</span></a>
+       <a href="4041.html"><span class="chip">Reward points</span></a>
+        </div>
+      </div>
+
+      <div class="visual">
+        <div class="visual-inner">
+          <div class="visual-badge">UPI · LIVE</div>
+          <div class="visual-title">Sending to @kiran.stackly</div>
+          <div class="visual-main">₹1,999.00</div>
+          <div class="visual-row">
+            <span>Note · Dinner split</span>
+            <span>● Verified contact</span>
+          </div>
+          <div class="visual-list">
+            <div class="visual-item">
+              <span>Scan merchant QR</span>
+              <span>Tap to open</span>
+            </div>
+            <div class="visual-item">
+              <span>Electricity bill · Due</span>
+              <span>₹1,380</span>
+            </div>
+            <div class="visual-item">
+              <span>Internet · Auto‑pay</span>
+              <span>₹899 / month</span>
+            </div>
+          </div>
+          <div class="visual-foot">
+            <span>Rewards for this payment</span>
+            <span>+23 coins</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Page 4: Cards -->
+  <section class="page page-4">
+    <div class="page-inner">
+      <div>
+        <div class="page-header-kicker">
+          <span class="k-dot"></span>
+          Cards
+        </div>
+        <h2>Physical and virtual cards in your pocket.</h2>
+        <p>
+          Generate virtual cards for online shopping, control limits, and freeze instantly with a swipe when something looks suspicious.
+        </p>
+        <div class="chip-row">
+        <a href="4041.html"> <span class="chip">Tap‑to‑pay</span></a>
+         <a href="4041.html"><span class="chip">Card controls</span></a>
+         <a href="4041.html"><span class="chip">Dynamic CVV</span></a>
+        </div>
+      </div>
+
+      <div class="visual">
+        <div class="visual-inner">
+          <div class="visual-badge">Virtual card</div>
+          <div class="visual-title">Stackly Platinum · Credit</div>
+          <div class="visual-main">₹2,45,000 limit</div>
+          <div class="visual-row">
+            <span>Current due · ₹17,430</span>
+            <span>● Safe online</span>
+          </div>
+          <div class="visual-list">
+            <div class="visual-item">
+              <span>Card status</span>
+              <span>Active</span>
+            </div>
+            <div class="visual-item">
+              <span>International usage</span>
+              <span>On</span>
+            </div>
+            <div class="visual-item">
+              <span>Dynamic CVV</span>
+              <span>Refresh in 22s</span>
+            </div>
+          </div>
+          <div class="visual-foot">
+            <span>Swipe to freeze card</span>
+            <span>›</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Page 5: Savings & FD -->
+  <section class="page page-5">
+    <div class="page-inner">
+      <div>
+        <div class="page-header-kicker">
+          <span class="k-dot"></span>
+          Savings
+        </div>
+        <h2>Grow your savings without thinking about it.</h2>
+        <p>
+          Turn spare change into digital jars, create FDs in one tap, and track how your interest grows every month.
+        </p>
+        <div class="chip-row">
+         <a href="4041.html"><span class="chip">Goal‑based jars</span></a>
+       <a href="4041.html"><span class="chip">High‑rate FDs</span></a>
+      <a href="4041.html"><span class="chip">Auto‑sweep</span></a>
+        </div>
+      </div>
+
+      <div class="visual">
+        <div class="visual-inner">
+          <div class="visual-badge">Savings goals</div>
+          <div class="visual-title">Trip · Emergency · Gadgets</div>
+          <div class="visual-main">₹1,12,600 saved</div>
+          <div class="visual-row">
+            <span>Auto‑saving every Friday</span>
+            <span>+₹2,000 / week</span>
+          </div>
+          <div class="visual-list">
+            <div class="visual-item">
+              <span>Goa trip · 72%</span>
+              <span>₹36,000 / 50,000</span>
+            </div>
+            <div class="visual-item">
+              <span>Emergency fund · 41%</span>
+              <span>₹41,000 / 1,00,000</span>
+            </div>
+            <div class="visual-item">
+              <span>New laptop · 55%</span>
+              <span>₹35,600 / 65,000</span>
+            </div>
+          </div>
+          <div class="visual-foot">
+            <span>FD interest this year</span>
+            <span>+₹7,480</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Page 6: Loans & EMI -->
+  <section class="page page-6">
+    <div class="page-inner">
+      <div>
+        <div class="page-header-kicker">
+          <span class="k-dot"></span>
+          Credit & loans
+        </div>
+        <h2>Plan EMIs and keep your score healthy.</h2>
+        <p>
+          Compare EMI options, set reminders, and see how each payment impacts your credit profile before you confirm the loan.
+        </p>
+        <div class="chip-row">
+     <a href="4041.html"><span class="chip">Score simulation</span></a>
+        <a href="4041.html"><span class="chip">Smart reminders</span></a>
+     <a href="4041.html"><span class="chip">Pre‑approved offers</span></a>
+        </div>
+      </div>
+
+      <div class="visual">
+        <div class="visual-inner">
+          <div class="visual-badge">Score · Good</div>
+          <div class="visual-title">Loan planner</div>
+          <div class="visual-main">784 points</div>
+          <div class="visual-row">
+            <span>12 on‑time EMIs</span>
+            <span>Risk · Low</span>
+          </div>
+          <div class="visual-list">
+            <div class="visual-item">
+              <span>Personal loan · 2 yrs</span>
+              <span>₹8,400 / month</span>
+            </div>
+            <div class="visual-item">
+              <span>Bike loan · 1 yr</span>
+              <span>₹3,200 / month</span>
+            </div>
+            <div class="visual-item">
+              <span>Card payoff plan</span>
+              <span>₹5,500 / month</span>
+            </div>
+          </div>
+          <div class="visual-foot">
+            <span>Tip · Pay 3 days early</span>
+            <span>Score +18</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Page 7: Business banking -->
+  <section class="page page-7">
+    <div class="page-inner">
+      <div>
+        <div class="page-header-kicker">
+          <span class="k-dot"></span>
+          Business
+        </div>
+        <h2>Designed for freelancers and businesses.</h2>
+        <p>
+          Create GST‑ready invoices, accept UPI and card payments, and separate your business cashflow from personal money.
+        </p>
+        <div class="chip-row">
+       <a href="4041.html"><span class="chip">GST invoices</span></a>
+       <a href="4041.html"><span class="chip">Payout links</span></a>
+      <a href="4041.html"><span class="chip">Vendor tracking</span></a>
+        </div>
+      </div>
+
+      <div class="visual">
+        <div class="visual-inner">
+          <div class="visual-badge">Business wallet</div>
+          <div class="visual-title">Today’s collections</div>
+          <div class="visual-main">₹46,800 received</div>
+          <div class="visual-row">
+            <span>7 invoices paid</span>
+            <span>● Settled</span>
+          </div>
+          <div class="visual-list">
+            <div class="visual-item">
+              <span>Invoice #204 · UPI</span>
+              <span>₹8,200</span>
+            </div>
+            <div class="visual-item">
+              <span>Invoice #205 · Card</span>
+              <span>₹15,600</span>
+            </div>
+            <div class="visual-item">
+              <span>Payout to vendor</span>
+              <span>₹12,000</span>
+            </div>
+          </div>
+          <div class="visual-foot">
+            <span>Next GST payment</span>
+            <span>In 10 days</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Page 8: Support & help -->
+  <section class="page page-8">
+    <div class="page-inner">
+      <div>
+        <div class="page-header-kicker">
+          <span class="k-dot"></span>
+          Support
+        </div>
+        <h2>Talk to a real person any time.</h2>
+        <p>
+          Chat with 24/7 support, request callbacks, or get instant answers from an AI assistant trained on Stackly Bank help center.
+        </p>
+        <div class="chip-row">
+         <a href="4041.html"> <span class="chip">24/7 chat</span></a>
+       <a href="4041.html"><span class="chip">Call back</span></a>
+       <a href="4041.html"><span class="chip">Smart FAQ</span></a>
+        </div>
+      </div>
+
+      <div class="visual">
+        <div class="visual-inner">
+          <div class="visual-badge">Support chat</div>
+          <div class="visual-title">You’re talking to Mira · Stackly</div>
+          <div class="visual-main">“How can we help today?”</div>
+          <div class="visual-row">
+            <span>Avg reply time · 40 sec</span>
+            <span>● Online</span>
+          </div>
+          <div class="visual-list">
+            <div class="visual-item">
+              <span>Open dispute</span>
+              <span>Start</span>
+            </div>
+            <div class="visual-item">
+              <span>Change contact details</span>
+              <span>2 min</span>
+            </div>
+            <div class="visual-item">
+              <span>Close old account</span>
+              <span>Request</span>
+            </div>
+          </div>
+          <div class="visual-foot">
+            <span>Rate this conversation</span>
+            <span>★ ★ ★ ★ ★</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ScrollReveal animations -->
+  <script>
+    const sr = ScrollReveal({
+      distance: "40px",
+      duration: 900,
+      easing: "cubic-bezier(0.21, 0.85, 0.37, 0.99)",
+      mobile: true
+    });
+
+    // First page: hero style
+    sr.reveal(".page-1 .page-inner > div:first-child", {
+      origin: "left",
+      interval: 100
+    });
+    sr.reveal(".page-1 .visual", {
+      origin: "right",
+      delay: 180
+    });
+
+    // Other pages: bottom + top reveal
+    for (let i = 2; i <= 8; i++) {
+      sr.reveal(".page-" + i + " .page-inner > div:first-child", {
+        origin: "bottom",
+        interval: 100,
+        viewOffset: { top: 40, bottom: 40 }
+      });
+      sr.reveal(".page-" + i + " .visual", {
+        origin: "top",
+        delay: 140,
+        viewOffset: { top: 40, bottom: 40 }
+      });
+    }
+  </script>
+</body>
+</html>
+
+
+<style>
+/* ================= FOOTER START ================= */
+
+footer{
+ background: linear-gradient(180deg, #1e1e3f, #342e6a, #4e2b8c);
+
+
+  color:#fff;
+  padding:70px 6%;
+  margin-top:80px;
+  position:relative;
+  overflow:hidden;
+  font-family:"Poppins",sans-serif;
+}
+
+/* Soft glow */
+footer::before{
+  content:"";
+  position:absolute;
+  top:-120px;
+  left:0;
+  width:120%;
+  height:220px;
+ 
+}
+
+
+/* GRID LAYOUT FIXED */
+.footer-container{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap:50px;
+  position:relative;
+  z-index:2;
+}
+
+/* LEFT */
+.footer-left img{
+  height:58px;
+  margin-bottom:12px;
+  object-fit:contain;
+}
+
+.footer-left p{
+  opacity:0.85;
+  margin:12px 0 18px;
+  line-height:1.6;
+  font-size:14px;
+  max-width:280px;
+}
+
+/* SOCIAL ICONS */
+.social-icons{
+  display:flex;
+  gap:14px;
+  margin-top:12px;
+}
+.social-icons a{
+  height:42px;width:42px;
+  border-radius:50%;
+  background:#ffffff20;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  transition:.3s;
+}
+.social-icons a:hover{
+  background:#00eaff;
+  transform:translateY(-6px) scale(1.1);
+}
+.social-icons img{
+  height:20px;width:20px;
+}
+
+/* CENTER LINKS */
+.footer-links h3,
+.footer-contact h3{
+  margin-bottom:16px;
+  font-size:22px;
+  color:#00eaff;
+}
+
+.footer-links a{
+  display:block;
+  text-decoration:none;
+  color:#cbd5e1;
+  margin:6px 0;
+  font-size:15px;
+  transition:.3s;
+}
+.footer-links a:hover{
+  transform:translateX(6px);
+  color:#00eaff;
+}
+
+/* RIGHT CONTACT */
+.footer-contact p{
+  margin:6px 0;
+  opacity:.9;
+  font-size:15px;
+}
+
+/* SUBSCRIBE */
+.subscribe-box{
+  margin-top:16px;
+  display:flex;
+  width:100%;
+  max-width:320px;
+}
+.subscribe-box input{
+  flex:1;
+  padding:12px 14px;
+  background:#ffffff12;
+  border:none;
+  border-radius:6px 0 0 6px;
+  color:white;
+  outline:none;
+}
+.subscribe-box button{
+  padding:12px 20px;
+  background:#00eaff;
+  border:none;
+  color:#001;
+  font-weight:700;
+  border-radius:0 6px 6px 0;
+  cursor:pointer;
+}
+
+/* BOTTOM COPYRIGHT */
+.footer-bottom{
+  text-align:center;
+  margin-top:40px;
+  padding-top:18px;
+  border-top:1px solid #1e293b;
+  opacity:.8;
+  font-size:14px;
+}
+
+/* MOBILE VIEW FIX */
+/* MOBILE VIEW FIX */
+@media(max-width:900px){
+  
+  .footer-container{
+    grid-template-columns:1fr;
+    gap:45px;
+    text-align:center;
+  }
+
+  /* Left section */
+  .footer-left p{
+    margin:auto;
+  }
+
+  .social-icons{
+    justify-content:center;
+  }
+
+  /* QUICK LINKS */
+  .footer-links{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;   /* center block */
+  }
+
+  .footer-links h3{
+    text-align:center;
+    width:100%;
+  }
+
+  .footer-links a{
+    width:100%;
+    max-width:220px;      /* keeps good width */
+    text-align:start;     /* TEXT LEFT */
+    margin:4px 0;
+    padding-left:0;
+    margin-left: 130px;
+  }
+
+  /* Contact section */
+  .footer-contact{
+    text-align:center;
+  }
+
+  /* Subscribe input responsiveness */
+  .subscribe-box{
+    flex-direction:column;
+    max-width:none;
+  }
+  .subscribe-box input{
+    width:100%;
+    border-radius:6px;
+    margin-bottom:10px;
+  }
+  .subscribe-box button{
+    width:100%;
+    border-radius:6px;
+  }
+}
+
+</style>
+
+<footer>
+  <div class="footer-container">
+
+    <!-- LEFT -->
+    <div class="footer-left">
+      <img src="Screenshot (7) (1) (1).webp" alt="Company Logo">
+      <p>Our digital banking platform provides customers with 24/7 access to essential financial services...</p>
+
+      <div class="social-icons">
+        <a href="4041.html"><img src="facebook.webp" alt="Facebook"></a>
+        <a href="4041.html"><img src="twitter-logo.webp" alt="Twitter"></a>
+        <a href="4041.html"><img src="linkedin.webp" alt="LinkedIn"></a>
+        <a href="4041.html"><img src="instagram.webp" alt="Instagram"></a>
+      </div>
+    </div>
+
+    <!-- CENTER -->
+    <div class="footer-links">
+      <h3>Quick Links</h3>
+      <a href="Home2.html">Home</a>
+      <a href="netbanking.html">Netbanking</a>
+     <a href="services.html">Services</a>
+    <a href="upi.html">UPI</a>
+    <a href="about.html">About</a>
+    <a href="blog.html">Blog</a>
+     <a href="contact.html">Contact</a>
+      <a href="signup1.html">Signup</a>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="footer-contact">
+      <h3>Contact Us</h3>
+      <p>📍 Bengaluru, Karnataka</p>
+      <p>📞 +91 98765 43210</p>
+      <p>✉ support@stacklybank.com</p>
+
+      <form action="4041.html" method="get" class="subscribe-box">
+        <input type="email" name="email" placeholder="Enter your email" required>
+        <button type="submit">Join</button>
+      </form>
+    </div>
+
+  </div>
+
+  <p class="footer-bottom">© 2025 Stackly Bank. All Rights Reserved.</p>
+</footer>
+
+<!-- ================= FOOTER END ================= -->

@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced Neon Navbar</title>
+
+<style>
+
+/* RESET */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Poppins",sans-serif;
+}
+
+/* BEAUTIFUL BODY */
+body{
+  background: linear-gradient(135deg, #a8c0ff, #3f2b96);
+  height:150vh;
+  padding-top:90px;
+  margin-top: 80px;
+}
+
+/* FULL FIXED NAV */
+nav{
+  position:fixed;
+  top:0;
+  left:0;                   /* FIXED LEFT */
+  width:100%;
+  background:linear-gradient(135deg, #6f00ff, #0097ff);
+  backdrop-filter:blur(20px);
+  padding:16px 28px;        /* REDUCED TO FIT DESKTOP */
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  box-shadow:0 5px 25px rgba(0,0,0,0.35);
+  z-index:2000;
+}
+
+/* LOGO */
+.logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.logo img{
+  width:130px;
+  height:auto;
+}
+/* ===== LOADER ===== */
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(153, 16, 91);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 9999;
+  animation: fadeOut 1s ease 1s forwards;
+}
+
+.loader-content {
+  text-align: center;
+  position: relative;
+}
+
+.loader-logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  animation: spin 3s infinite linear;
+  z-index: 2;
+  position: relative;
+}
+
+.pulse-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120px;
+  height: 120px;
+  transform: translate(-50%, -50%);
+  border: 3px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  animation: pulse 1.5s infinite ease-in-out;
+  z-index: 1;
+}
+
+#loader p {
+  color: white;
+  margin-top: 15px;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  animation: fadeText 3s infinite alternate;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.7; }
+  70% { transform: translate(-50%, -50%) scale(1.3); opacity: 0.2; }
+  100% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.7; }
+}
+
+@keyframes fadeText {
+  from { opacity: 0.6; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  to { opacity: 0; visibility: hidden; }
+}
+
+
+/* NAV LINKS — DESKTOP */
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:30px;
+  margin-left:auto;        /* CLEAN ALIGNMENT FIX */
+}
+
+/* NAV LINK STYLE */
+.nav-links a, .dropdown-btn{
+  font-size:16px;
+  font-weight:600;
+  color:white;
+  text-decoration:none;
+  padding:10px 14px;
+  border-radius:8px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+/* HOVER GLOW */
+.nav-links a:hover, .dropdown-btn:hover{
+  background:rgba(255,255,255,0.25);
+  box-shadow:0 0 15px rgba(255,255,255,0.7);
+  transform:translateY(-3px);
+}
+
+/* DROPDOWN */
+.dropdown{
+  position:relative;
+}
+
+.dropdown-content{
+  background:white;
+  position:absolute;
+  top:50px;
+  left:0;
+  width:160px;
+  border-radius:12px;
+  box-shadow:0 8px 25px rgba(0,0,0,0.25);
+  display:none;
+  flex-direction:column;
+  overflow:hidden;
+}
+
+.dropdown-content a{
+  padding:12px 20px;
+  font-size:15px;
+  font-weight:500;
+  color:#333;
+}
+
+.dropdown-content a:hover{
+  background:#ececff;
+  color:#4b00ff;
+}
+
+/* HAMBURGER */
+.hamburger{
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  cursor:pointer;
+}
+.hamburger span{
+  width:28px;
+  height:3px;
+  background:white;
+  border-radius:5px;
+  transition:0.4s;
+}
+
+/* MOBILE VIEW */
+@media(max-width:850px){
+
+  .hamburger{ display:flex; }
+
+  /* mobile menu */
+  .nav-links{
+    position:fixed;
+    top:90px;
+    right:-100%;
+    width:260px;
+    height:100vh;
+    background:linear-gradient(135deg, #3f2b96, #6f00ff);
+    flex-direction:column;
+    padding-top:50px;
+    gap:25px;
+    box-shadow:-10px 0 25px rgba(0,0,0,0.3);
+    transition:0.5s;
+  }
+
+  .nav-links.show{
+    right:0;
+  }
+
+  .dropdown-content{
+    position:relative;
+    top:0;
+    width:100%;
+    box-shadow:none;
+  }
+}
+
+</style>
+</head>
+
+<body>
+</head>
+<body>
+<div id="loader">
+      <div class="loader-content">
+        <div class="pulse-ring"></div>
+        <p>Loading Banking..</p>
+      </div>
+    </div>
+<!-- NAVBAR -->
+<nav>
+
+  <!-- LOGO -->
+  <div class="logo">
+    <img src="Screenshot (7) (1) (1).webp">
+  </div>
+
+  <!-- HAMBURGER -->
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- NAV LINKS -->
+   <div class="nav-links" id="menu">
+
+    <div class="dropdown">
+      <div class="dropdown-btn" onclick="toggleDropdown()">Home ▾</div>
+      <div class="dropdown-content" id="dropMenu">
+        <a href="index.html">Home 1</a>
+        <a href="Home2.html">Home 2</a>
+      </div>
+    </div>
+
+    <a href="dashboard.html">Dashboard</a>
+     <a href="account.html">Account</a>
+    <a href="loans.html">Loans</a>
+    <a href="investment.html">Investment</a>
+    <a href="cards.html">Cards</a>
+    <a href="carreer.html">Career</a>
+     <a href="signup.html">Signup</a>
+  </div>
+</nav>
+
+
+
+<script>
+/* MOBILE MENU OPEN/CLOSE */
+function toggleMenu(){
+  document.getElementById("menu").classList.toggle("show");
+}
+
+/* DROPDOWN CLICK OPEN/CLOSE */
+function toggleDropdown(){
+  const drop = document.getElementById("dropMenu");
+  drop.style.display = (drop.style.display === "flex") ? "none" : "flex";
+}
+</script>
+
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+
+
+<style>
+ .hero{
+  min-height:50vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:80px 20px;
+  background:linear-gradient(135deg,#020617,#020b1c,#021c3d);
+}
+
+.hero-content{
+  max-width:400px;
+  width:100%;
+}
+
+/* ===== SLIDER ===== */
+.hero-slider{
+  max-width:400px;
+  margin:0 auto 30px;
+  overflow:hidden;
+  border-radius:26px;
+  box-shadow:0 30px 80px rgba(0,0,0,.7);
+}
+
+.slides{
+  display:flex;
+  transition:transform .9s ease;
+}
+
+.slides img{
+  width:100%;
+  flex-shrink:0;
+}
+
+/* ===== TEXT ===== */
+.hero h1{
+  font-size:44px;
+  margin-bottom:14px;
+  background:linear-gradient(90deg,#38bdf8,#22c55e);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.hero p{
+  font-size:17px;
+  opacity:.9;
+  margin-bottom:34px;
+}
+
+/* ===== BUTTONS ===== */
+.hero-buttons{
+  display:flex;
+  gap:20px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.btn{
+  padding:14px 38px;
+  border-radius:40px;
+  font-weight:600;
+  text-decoration:none;
+  transition:.3s ease;
+}
+
+.btn.primary{
+  background:linear-gradient(135deg,#38bdf8,#22c55e);
+  color:#020617;
+}
+
+.btn.secondary{
+  border:1.5px solid #38bdf8;
+  color:#38bdf8;
+  background:transparent;
+}
+
+.btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 10px 30px rgba(56,189,248,.35);
+}
+
+/* ===== MOBILE ===== */
+@media(max-width:600px){
+  .hero h1{font-size:30px;}
+  .hero p{font-size:15px;}
+  .hero-slider{max-width:90%;}
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+
+body{
+  min-height:150vh;
+  background:radial-gradient(circle at top,#2af598,#009efd);
+  color:#fff;
+  overflow-x:hidden;
+}
+
+/* ===== Animated Background ===== */
+.bg-animated{
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  background:linear-gradient(120deg,#009efd,#2af598,#b721ff,#21d4fd);
+  background-size:300% 300%;
+  animation:moveGradient 16s ease infinite;
+}
+@keyframes moveGradient{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+/* Floating dots */
+.bg-bubbles span{
+  position:fixed;
+  border-radius:50%;
+  background:rgba(255,255,255,.08);
+  animation:float 18s linear infinite;
+  z-index:-1;
+}
+.bg-bubbles span:nth-child(1){width:160px;height:160px;top:10%;left:10%}
+.bg-bubbles span:nth-child(2){width:120px;height:120px;top:60%;left:70%;animation-duration:22s}
+.bg-bubbles span:nth-child(3){width:90px;height:90px;top:75%;left:15%;animation-duration:20s}
+.bg-bubbles span:nth-child(4){width:60px;height:60px;top:20%;left:80%;animation-duration:14s}
+.bg-bubbles span:nth-child(5){width:130px;height:130px;top:40%;left:30%;animation-duration:26s}
+
+@keyframes float{
+  0%{transform:translateY(0);opacity:.5}
+  50%{transform:translateY(-40px);opacity:.8}
+  100%{transform:translateY(0);opacity:.5}
+}
+
+/* ===== Sections ===== */
+.page{
+  min-height:100vh;
+  padding:90px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.page-inner{
+  background:rgba(5,7,20,.65);
+  border-radius:24px;
+  padding:26px;
+  backdrop-filter:blur(12px);
+  box-shadow:0 20px 50px rgba(0,0,0,.35);
+  width:100%;
+  max-width:1100px;
+}
+
+@media(min-width:768px){
+  .page-inner{
+    display:grid;
+    grid-template-columns:1.4fr 1fr;
+    gap:30px;
+    align-items:center;
+  }
+}
+
+.label{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:12px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:#9ae6ff;
+}
+.label-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:linear-gradient(135deg,#2af598,#009efd);
+}
+
+h1{font-size:32px;margin:12px 0}
+h2{font-size:26px;margin:12px 0}
+p{opacity:.85;line-height:1.6;font-size:14px}
+
+.tag-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:14px;
+}
+.tag{
+  font-size:11px;
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.2);
+}
+
+/* ===== Phone Image Frame ===== */
+.phone{
+  max-width:300px;
+  margin:auto;
+  border-radius:30px;
+  padding:14px;              /* slightly increased */
+  background:#020617;
+  border:2px solid rgba(148,163,184,.6);
+  box-shadow:0 20px 45px rgba(0,0,0,.8);
+
+  display:flex;
+  flex-direction:column;
+  gap:18px;                  /* ✅ gap between image & buttons */
+}
+
+
+/* Buttons */
+.btn-row{
+  display:flex;
+  gap:12px;
+  margin-top:80px;
+}
+.btn-primary{
+  padding:10px 22px;
+  border-radius:999px;
+  border:none;
+  background:linear-gradient(135deg,#2af598,#009efd);
+  color:#020617;
+  font-weight:600;
+}
+.btn-secondary{
+  padding:10px 20px;
+  border-radius:999px;
+  background:rgba(15,23,42,.8);
+  color:#fff;
+  border:1px solid rgba(148,163,184,.7);
+}
+</style>
+</head>
+
+<body>
+<section class="hero">
+  <div class="hero-content">
+
+    <!-- IMAGE SLIDER -->
+    <div class="hero-slider">
+      <div class="slides" id="heroSlides">
+        <img src="cards3.webp" alt="Banking App">
+        <img src="enquiry.webp" alt="Enquiry Banking">
+        <img src="pav10.webp" alt="Secure Payments">
+      </div>
+    </div>
+
+    <h1>Welcome to Stackly Bank</h1>
+    <p>Secure • Smart • Digital Banking Experience</p>
+
+    <div class="hero-buttons">
+      <a href="404.html" class="btn primary">Open Account</a>
+      <a href="404.html" class="btn secondary">Contact Us</a>
+    </div>
+
+  </div>
+</section>
+<script>
+let index = 0;
+const slides = document.getElementById("heroSlides");
+
+setInterval(() => {
+  index = (index + 1) % slides.children.length;
+  slides.style.transform = `translateX(-${index * 100}%)`;
+}, 3000);
+</script>
+
+<div class="bg-animated"></div>
+<div class="bg-bubbles">
+  <span></span><span></span><span></span><span></span><span></span>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="page page-1">
+  <div class="page-inner">
+    <div>
+      <div class="label"><span class="label-dot"></span>Stackly Bank</div>
+      <h1>Modern Digital Banking</h1>
+      <p>
+        Experience secure, fast and smart banking with real-time insights,
+        UPI payments, cards and savings in one powerful app.
+      </p>
+
+      <div class="tag-row">
+       
+      </div>
+
+      
+    </div>
+
+    <div class="phone">
+      <img src="cards2.webp" alt="Mobile Banking App">
+    </div>
+  </div>
+</section>
+
+<!-- ===== PAYMENTS ===== -->
+<section class="page page-2">
+  <div class="page-inner">
+    <div>
+      <div class="label"><span class="label-dot"></span>Payments</div>
+      <h2>Fast UPI & QR Payments</h2>
+      <p>
+        Send money instantly, scan QR codes, manage bills and earn rewards
+        with zero hidden charges.
+      </p>
+    </div>
+
+    <div class="phone">
+      <img src="upi2.webp" alt="UPI Payments">
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECURITY ===== -->
+<section class="page page-3">
+  <div class="page-inner">
+    <div>
+      <div class="label"><span class="label-dot"></span>Security</div>
+      <h2>Bank-Grade Protection</h2>
+      <p>
+        Biometric login, encrypted transactions, OTP and real-time fraud
+        monitoring keep your money safe.
+      </p>
+    </div>
+
+    <div class="phone">
+      <img src="pav11.webp" alt="Bank Security">
+    </div>
+  </div>
+</section>
+
+<!-- ===== ANALYTICS ===== -->
+<section class="page page-4">
+  <div class="page-inner">
+    <div>
+      <div class="label"><span class="label-dot"></span>Insights</div>
+      <h2>Track Spending & Savings</h2>
+      <p>
+        Visual analytics help you understand expenses, set goals and grow
+        savings effortlessly.
+      </p>
+    </div>
+
+    <div class="phone">
+      <img src="pav10.webp" alt="Finance Analytics">
+    </div>
+  </div>
+</section>
+
+<!-- ===== Scroll Reveal ===== -->
+<script>
+const sr = ScrollReveal({
+  distance:"40px",
+  duration:900,
+  easing:"cubic-bezier(0.21,0.85,0.37,0.99)",
+  mobile:true
+});
+sr.reveal(".page-inner > div",{origin:"left",interval:120});
+sr.reveal(".phone",{origin:"right",delay:200});
+</script>
+
+
+<!-- Scroll Reveal -->
+<script src="https://unpkg.com/scrollreveal"></script>
+
+<style>
+/* ===== RESET ===== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Poppins",system-ui,sans-serif;
+}
+body{
+  background:#020617;
+  color:#fff;
+  overflow-x:hidden;
+}
+
+/* ===== BACKGROUND ANIMATION ===== */
+.bg-gradient{
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  background:linear-gradient(120deg,#020617,#0f172a,#1e3a8a,#0ea5e9);
+  background-size:400% 400%;
+  animation:bgMove 18s ease infinite;
+}
+@keyframes bgMove{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+/* Floating dots */
+.dots span{
+  position:fixed;
+  width:120px;height:120px;
+  border-radius:50%;
+  background:rgba(255,255,255,.05);
+  animation:float 20s infinite linear;
+  z-index:-1;
+}
+.dots span:nth-child(1){top:10%;left:10%}
+.dots span:nth-child(2){top:60%;left:70%;animation-duration:26s}
+.dots span:nth-child(3){top:80%;left:20%;animation-duration:22s}
+@keyframes float{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-40px)}
+  100%{transform:translateY(0)}
+}
+
+/* ===== SECTIONS ===== */
+.section{
+  min-height:100vh;
+  padding:40px 20px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+.section-inner{
+  max-width:1100px;
+  width:100%;
+  background:rgba(2,6,23,.7);
+  backdrop-filter:blur(14px);
+  border-radius:26px;
+  padding:30px;
+  box-shadow:0 30px 70px rgba(0,0,0,.6);
+}
+
+@media(min-width:768px){
+  .section-inner{
+    display:grid;
+    grid-template-columns:1.4fr 1fr;
+    gap:30px;
+    align-items:center;
+  }
+}
+
+.label{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:12px;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  color:#38bdf8;
+}
+.label span{
+  width:8px;height:8px;
+  border-radius:50%;
+  background:#38bdf8;
+}
+
+h1{font-size:34px;margin:14px 0}
+h2{font-size:26px;margin:14px 0}
+p{opacity:.85;line-height:1.7;font-size:14px}
+
+.tags{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:14px;
+}
+.tag{
+  padding:6px 12px;
+  border-radius:999px;
+  font-size:11px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.2);
+}
+
+/* ===== BUTTONS ===== */
+.btns{margin-top:22px;display:flex;gap:12px}
+.btn-primary{
+  padding:12px 24px;
+  border:none;
+  border-radius:999px;
+  background:linear-gradient(135deg,#22d3ee,#38bdf8);
+  color:#020617;
+  font-weight:600;
+}
+.btn-secondary{
+  padding:12px 22px;
+  border-radius:999px;
+  background:transparent;
+  border:1px solid rgba(255,255,255,.4);
+  color:#fff;
+}
+
+/* ===== PHONE IMAGE ===== */
+.phone{
+  max-width:300px;
+  margin:auto;
+  padding:10px;
+  border-radius:32px;
+  background:#020617;
+  border:2px solid rgba(148,163,184,.5);
+  box-shadow:0 20px 50px rgba(0,0,0,.8);
+}
+.phone img{
+  width:100%;
+  border-radius:24px;
+  display:block;
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="dots">
+  <span></span><span></span><span></span>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="section">
+  <div class="section-inner">
+    <div>
+      <div class="label"><span></span>Stackly Bank</div>
+      <h1>Smart Digital Banking Experience</h1>
+      <p>
+        Open accounts instantly, manage UPI payments, cards, savings,
+        loans and investments – all in one secure banking app.
+      </p>
+      <div class="tags">
+        
+      </div>
+      
+    </div>
+
+    <div class="phone">
+      <img src="pav6.webp" alt="Mobile Banking">
+    </div>
+  </div>
+</section>
+
+<!-- ===== PAYMENTS ===== -->
+<section class="section">
+  <div class="section-inner">
+    <div>
+      <div class="label"><span></span>Payments</div>
+      <h2>Fast UPI & QR Payments</h2>
+      <p>
+        Send money instantly, scan QR codes, manage bills and get
+        cashback on every transaction.
+      </p>
+    </div>
+
+    <div class="phone">
+      <img src="upi.webp" alt="UPI Payments">
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECURITY ===== -->
+<section class="section">
+  <div class="section-inner">
+    <div>
+      <div class="label"><span></span>Security</div>
+      <h2>Bank-Grade Security</h2>
+      <p>
+        Biometric login, encrypted transactions, OTP verification and
+        real-time fraud monitoring.
+      </p>
+    </div>
+
+    <div class="phone">
+      <img src="pav3.webp" alt="Bank Security">
+    </div>
+  </div>
+</section>
+
+<!-- ===== ANALYTICS ===== -->
+<section class="section">
+  <div class="section-inner">
+    <div>
+      <div class="label"><span></span>Insights</div>
+      <h2>Spending & Savings Analytics</h2>
+      <p>
+        Visual reports help you track expenses, savings goals and
+        monthly financial growth.
+      </p>
+    </div>
+
+    <div class="phone">
+      <img src="pav2.webp" alt="Finance Analytics">
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="section">
+  <div class="section-inner">
+    <div>
+      <div class="label"><span></span>Get Started</div>
+      <h2>Open Your Bank Account Today</h2>
+      <p>
+        100% digital onboarding, zero paperwork, instant activation.
+      </p>
+      
+    </div>
+
+    <div class="phone">
+      <img src="pav11.webp" alt="Digital Banking">
+    </div>
+  </div>
+</section>
+
+<!-- ===== SCROLL REVEAL ===== -->
+<script>
+ScrollReveal({
+  distance:"40px",
+  duration:900,
+  easing:"cubic-bezier(.21,.85,.37,.99)",
+  mobile:true
+}).reveal(".section-inner > div",{origin:"left",interval:120});
+
+ScrollReveal().reveal(".phone",{origin:"right",delay:200});
+</script>
+
+</body>
+</html>
+
+</body>
+</html>
+
+<style>
+/* ================= FOOTER START ================= */
+
+footer{
+ background: linear-gradient(180deg, #1e1e3f, #342e6a, #4e2b8c);
+
+
+  color:#fff;
+  padding:70px 6%;
+  margin-top:80px;
+  position:relative;
+  overflow:hidden;
+  font-family:"Poppins",sans-serif;
+}
+
+/* Soft glow */
+footer::before{
+  content:"";
+  position:absolute;
+  top:-120px;
+  left:0;
+  width:120%;
+  height:220px;
+ 
+}
+
+
+/* GRID LAYOUT FIXED */
+.footer-container{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap:50px;
+  position:relative;
+  z-index:2;
+}
+
+/* LEFT */
+.footer-left img{
+  height:58px;
+  margin-bottom:12px;
+  object-fit:contain;
+}
+
+.footer-left p{
+  opacity:0.85;
+  margin:12px 0 18px;
+  line-height:1.6;
+  font-size:14px;
+  max-width:280px;
+}
+
+/* SOCIAL ICONS */
+.social-icons{
+  display:flex;
+  gap:14px;
+  margin-top:12px;
+}
+.social-icons a{
+  height:42px;width:42px;
+  border-radius:50%;
+  background:#ffffff20;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  transition:.3s;
+}
+.social-icons a:hover{
+  background:#00eaff;
+  transform:translateY(-6px) scale(1.1);
+}
+.social-icons img{
+  height:20px;width:20px;
+}
+
+/* CENTER LINKS */
+.footer-links h3,
+.footer-contact h3{
+  margin-bottom:16px;
+  font-size:22px;
+  color:#00eaff;
+}
+
+.footer-links a{
+  display:block;
+  text-decoration:none;
+  color:#cbd5e1;
+  margin:6px 0;
+  font-size:15px;
+  transition:.3s;
+}
+.footer-links a:hover{
+  transform:translateX(6px);
+  color:#00eaff;
+}
+
+/* RIGHT CONTACT */
+.footer-contact p{
+  margin:6px 0;
+  opacity:.9;
+  font-size:15px;
+}
+
+/* SUBSCRIBE */
+.subscribe-box{
+  margin-top:16px;
+  display:flex;
+  width:100%;
+  max-width:320px;
+}
+.subscribe-box input{
+  flex:1;
+  padding:12px 14px;
+  background:#ffffff12;
+  border:none;
+  border-radius:6px 0 0 6px;
+  color:white;
+  outline:none;
+}
+.subscribe-box button{
+  padding:12px 20px;
+  background:#00eaff;
+  border:none;
+  color:#001;
+  font-weight:700;
+  border-radius:0 6px 6px 0;
+  cursor:pointer;
+}
+
+/* BOTTOM COPYRIGHT */
+.footer-bottom{
+  text-align:center;
+  margin-top:40px;
+  padding-top:18px;
+  border-top:1px solid #1e293b;
+  opacity:.8;
+  font-size:14px;
+}
+
+/* MOBILE VIEW FIX */
+/* MOBILE VIEW FIX */
+@media(max-width:900px){
+  
+  .footer-container{
+    grid-template-columns:1fr;
+    gap:45px;
+    text-align:center;
+  }
+
+  /* Left section */
+  .footer-left p{
+    margin:auto;
+  }
+
+  .social-icons{
+    justify-content:center;
+  }
+
+  /* QUICK LINKS */
+  .footer-links{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;   /* center block */
+  }
+
+  .footer-links h3{
+    text-align:center;
+    width:100%;
+  }
+
+  .footer-links a{
+    width:100%;
+    max-width:220px;      /* keeps good width */
+    text-align:start;     /* TEXT LEFT */
+    margin:4px 0;
+    padding-left:0;
+    margin-left: 130px;
+  }
+
+  /* Contact section */
+  .footer-contact{
+    text-align:center;
+  }
+
+  /* Subscribe input responsiveness */
+  .subscribe-box{
+    flex-direction:column;
+    max-width:none;
+  }
+  .subscribe-box input{
+    width:100%;
+    border-radius:6px;
+    margin-bottom:10px;
+  }
+  .subscribe-box button{
+    width:100%;
+    border-radius:6px;
+  }
+}
+
+</style>
+
+<footer>
+  <div class="footer-container">
+
+    <!-- LEFT -->
+    <div class="footer-left">
+      <img src="Screenshot (7) (1) (1).webp" alt="Company Logo">
+      <p>Our digital banking platform provides customers with 24/7 access to essential financial services...</p>
+
+      <div class="social-icons">
+        <a href="404.html"><img src="facebook.webp" alt="Facebook"></a>
+        <a href="404.html"><img src="twitter-logo.webp" alt="Twitter"></a>
+        <a href="404.html"><img src="linkedin.webp" alt="LinkedIn"></a>
+        <a href="404.html"><img src="instagram.webp" alt="Instagram"></a>
+      </div>
+    </div>
+
+    <!-- CENTER -->
+    <div class="footer-links">
+      <h3>Quick Links</h3>
+      <a href="index.html">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="account.html">Account</a>
+      <a href="loans.html">Loans</a>
+      <a href="investment.html">Investment</a>
+      <a href="cards.html">Cards</a>
+      <a href="carreer.html">Career</a>
+      <a href="signup.html">Signup</a>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="footer-contact">
+      <h3>Contact Us</h3>
+      <p>📍 Bengaluru, Karnataka</p>
+      <p>📞 +91 98765 43210</p>
+      <p>✉ support@stacklybank.com</p>
+
+      <form action="404.html" method="get" class="subscribe-box">
+        <input type="email" name="email" placeholder="Enter your email" required>
+        <button type="submit">Join</button>
+      </form>
+    </div>
+
+  </div>
+
+  <p class="footer-bottom">© 2025 Stackly Bank. All Rights Reserved.</p>
+</footer>
+
+<!-- ================= FOOTER END ================= -->

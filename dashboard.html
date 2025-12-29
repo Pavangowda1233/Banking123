@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced Neon Navbar</title>
+
+<style>
+
+/* RESET */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Poppins",sans-serif;
+}
+
+/* BEAUTIFUL BODY */
+body{
+  background: linear-gradient(135deg, #a8c0ff, #3f2b96);
+  height:150vh;
+  padding-top:90px;
+  margin-top: 80px;
+}
+
+/* FULL FIXED NAV */
+nav{
+  position:fixed;
+  top:0;
+  left:0;                   /* FIXED LEFT */
+  width:100%;
+  background:linear-gradient(135deg, #6f00ff, #0097ff);
+  backdrop-filter:blur(20px);
+  padding:16px 28px;        /* REDUCED TO FIT DESKTOP */
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  box-shadow:0 5px 25px rgba(0,0,0,0.35);
+  z-index:2000;
+}
+
+/* LOGO */
+.logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.logo img{
+  width:130px;
+  height:auto;
+}
+
+/* NAV LINKS — DESKTOP */
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:30px;
+  margin-left:auto;        /* CLEAN ALIGNMENT FIX */
+}
+
+/* NAV LINK STYLE */
+.nav-links a, .dropdown-btn{
+  font-size:16px;
+  font-weight:600;
+  color:white;
+  text-decoration:none;
+  padding:10px 14px;
+  border-radius:8px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+/* HOVER GLOW */
+.nav-links a:hover, .dropdown-btn:hover{
+  background:rgba(255,255,255,0.25);
+  box-shadow:0 0 15px rgba(255,255,255,0.7);
+  transform:translateY(-3px);
+}
+
+/* DROPDOWN */
+.dropdown{
+  position:relative;
+}
+
+.dropdown-content{
+  background:white;
+  position:absolute;
+  top:50px;
+  left:0;
+  width:160px;
+  border-radius:12px;
+  box-shadow:0 8px 25px rgba(0,0,0,0.25);
+  display:none;
+  flex-direction:column;
+  overflow:hidden;
+}
+
+.dropdown-content a{
+  padding:12px 20px;
+  font-size:15px;
+  font-weight:500;
+  color:#333;
+}
+
+.dropdown-content a:hover{
+  background:#ececff;
+  color:#4b00ff;
+}
+
+/* HAMBURGER */
+.hamburger{
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  cursor:pointer;
+}
+.hamburger span{
+  width:28px;
+  height:3px;
+  background:white;
+  border-radius:5px;
+  transition:0.4s;
+}
+
+/* MOBILE VIEW */
+@media(max-width:850px){
+
+  .hamburger{ display:flex; }
+
+  /* mobile menu */
+  .nav-links{
+    position:fixed;
+    top:90px;
+    right:-100%;
+    width:260px;
+    height:100vh;
+    background:linear-gradient(135deg, #3f2b96, #6f00ff);
+    flex-direction:column;
+    padding-top:50px;
+    gap:25px;
+    box-shadow:-10px 0 25px rgba(0,0,0,0.3);
+    transition:0.5s;
+  }
+
+  .nav-links.show{
+    right:0;
+  }
+
+  .dropdown-content{
+    position:relative;
+    top:0;
+    width:100%;
+    box-shadow:none;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+
+  <!-- LOGO -->
+  <div class="logo">
+    <img src="Screenshot (7) (1) (1).webp">
+  </div>
+
+  <!-- HAMBURGER -->
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- NAV LINKS -->
+   <div class="nav-links" id="menu">
+
+    <div class="dropdown">
+      <div class="dropdown-btn" onclick="toggleDropdown()">Home ▾</div>
+      <div class="dropdown-content" id="dropMenu">
+        <a href="index.html">Home 1</a>
+        <a href="Home2.html">Home 2</a>
+      </div>
+    </div>
+
+    <a href="dashboard.html">Dashboard</a>
+     <a href="account.html">Account</a>
+    <a href="loans.html">Loans</a>
+    <a href="investment.html">Investment</a>
+    <a href="cards.html">Cards</a>
+    <a href="carreer.html">Career</a>
+     <a href="signup.html">Signup</a>
+  </div>
+</nav>
+
+
+
+<script>
+/* MOBILE MENU OPEN/CLOSE */
+function toggleMenu(){
+  document.getElementById("menu").classList.toggle("show");
+}
+
+/* DROPDOWN CLICK OPEN/CLOSE */
+function toggleDropdown(){
+  const drop = document.getElementById("dropMenu");
+  drop.style.display = (drop.style.display === "flex") ? "none" : "flex";
+}
+</script>
+
+<style>
+/* RESET */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Poppins",sans-serif;
+}
+
+body{
+  background:#eef3ff;
+  padding:18px;
+  overflow-x:hidden;
+  color:#111;
+  margin-top: 100px;
+}
+
+/* PAGE WRAPPER */
+.dashboard{
+  max-width:1100px;
+  margin:auto;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+/* UNIVERSAL CARD */
+.card{
+  background:#ffffff;
+  border-radius:18px;
+  padding:20px;
+  box-shadow:0px 15px 40px rgba(0,0,0,0.08);
+}
+
+/* ===================== PROFILE FIRST ===================== */
+.profile-card{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  padding:20px;
+}
+
+.profile-card img{
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  border:3px solid #0078ff;
+  object-fit:cover;
+}
+
+.profile-info{
+  display:flex;
+  flex-direction:column;
+}
+
+.profile-info h2{
+  font-size:20px;
+  font-weight:600;
+}
+
+.profile-info span{
+  font-size:14px;
+  opacity:.7;
+}
+
+.edit-btn{
+  margin-top:10px;
+  padding:8px 16px;
+  border:none;
+  border-radius:50px;
+  background:#0078ff;
+  color:white;
+  font-size:13px;
+  cursor:pointer;
+}
+
+@media(max-width:600px){
+  .profile-card{
+    flex-direction:column;
+    text-align:center;
+  }
+}
+
+/* ===================== BALANCE CARD ===================== */
+.balance-card{
+  background:linear-gradient(135deg,#0078ff,#00c6ff);
+  color:white;
+  padding:28px;
+  border-radius:22px;
+}
+
+.balance-label{
+  font-size:15px;
+  opacity:.9;
+}
+
+.balance-amount{
+  font-size:40px;
+  font-weight:600;
+  margin-top:4px;
+}
+
+.balance-acno{
+  margin-top:6px;
+  opacity:.85;
+}
+
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:18px;
+}
+
+.action-btn{
+  background:white;
+  color:#005388;
+  border:none;
+  padding:10px 20px;
+  border-radius:50px;
+  font-weight:500;
+  font-size:14px;
+  cursor:pointer;
+  box-shadow:0 5px 12px rgba(255,255,255,.3);
+}
+
+/* GRID */
+.grid-2{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+@media(max-width:780px){
+  .grid-2{ grid-template-columns:1fr; }
+}
+
+.section-title{
+  font-size:20px;
+  font-weight:600;
+  margin-bottom:14px;
+}
+
+/* INSIGHTS */
+.insight-line{
+  font-size:14px;
+  margin-bottom:8px;
+}
+
+/* TRANSACTIONS */
+.transaction-item{
+  display:flex;
+  justify-content:space-between;
+  padding:12px;
+  border-radius:12px;
+  margin-bottom:10px;
+  background:#f6f8ff;
+  border:1px solid #dde4ff;
+  margin-top: 60px;
+}
+
+.t-left{ display:flex; flex-direction:column; }
+.t-title{ font-size:15px; font-weight:500; }
+.t-date{ font-size:12px; opacity:.6; }
+.t-amount{ font-size:15px; font-weight:600; }
+
+.credit{ color:#26b87a; }
+.debit{ color:#e24444; }
+
+/* CARDS */
+.bank-card{
+  height:150px;
+  border-radius:20px;
+  padding:20px;
+  color:white;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  margin-top: 30px;
+}
+
+.card-num{
+  font-size:17px;
+  letter-spacing:3px;
+}
+
+.card-a{ background:linear-gradient(135deg,#6a11cb,#2575fc); }
+.card-b{ background:linear-gradient(135deg,#00d2ff,#3a7bd5); }
+
+/* ANALYTICS */
+.graph{
+  display:flex;
+  gap:10px;
+  align-items:flex-end;
+  height:140px;
+}
+
+.bar{
+  flex:1;
+  background:#dce6ff;
+  border-radius:8px;
+  position:relative;
+}
+
+.bar-fill{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  border-radius:8px;
+  background:linear-gradient(135deg,#00c3ff,#0076ff);
+}
+
+/* INLINE PROFILE TABLE */
+.profile-row{
+  display:flex;
+  justify-content:space-between;
+  padding:10px 0;
+  border-bottom:1px solid #eee;
+  font-size:14px;
+}
+
+.profile-row:last-child{
+  border-bottom:none;
+}
+
+.profile-row span:first-child{
+  opacity:.75;
+}
+</style>
+</head>
+
+<body>
+
+<div class="dashboard">
+
+  <!-- ===================== PROFILE FIRST ===================== -->
+  <div class="card profile-card">
+    <img src="Hr.webp">
+    <div class="profile-info">
+      <h2>Pavan Gowda</h2>
+      <span>gowda@example.com</span>
+      <span>+91 9876543210</span>
+     <a href="404.html"><button class="edit-btn">Edit Profile</button></a>
+    </div>
+  </div>
+
+  <!-- BALANCE CARD -->
+  <div class="balance-card">
+    <div class="balance-label">Available Balance</div>
+    <div class="balance-amount">₹ 2,48,920.50</div>
+    <div class="balance-acno">A/C No: 9876 5432 1123</div>
+
+    <div class="actions">
+  <a href="404.html"><button class="action-btn">Add Money</button></a> 
+    <a href="404.html"><button class="action-btn">Send Money</button></a> 
+    <a href="404.html"><button class="action-btn">Statement</button></a>
+    </div>
+  </div>
+
+  <!-- GRID: INSIGHTS + CARDS -->
+  <div class="grid-2">
+
+    <div class="card">
+      <div class="section-title">Account Insights</div>
+      <div class="insight-line">Last Login: 1:22 PM</div>
+      <div class="insight-line">Branch: Bengaluru – MG Road</div>
+      <div class="insight-line">IFSC: STBK0123456</div>
+      <div class="insight-line">UPI ID: gowda@stackly</div>
+    </div>
+
+    <div class="card">
+      <div class="section-title">Your Cards</div>
+      <div class="bank-card card-a">
+        <div>Debit Card</div>
+        <div class="card-num">4321 5678 9999 1200</div>
+        <div>VALID: 12/29</div>
+      </div>
+      <div class="bank-card card-b" style="margin-top:14px;">
+        <div>Credit Card</div>
+        <div class="card-num">5599 1122 4455 7788</div>
+        <div>Limit: ₹ 90,000</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- TRANSACTIONS -->
+  <div class="card">
+    <div class="section-title">Recent Transactions</div>
+
+    <div class="transaction-item">
+      <div class="t-left">
+        <span class="t-title">Zomato Food Order</span>
+        <span class="t-date">12 Feb</span>
+      </div>
+      <span class="t-amount debit">-₹ 420</span>
+    </div>
+
+    <div class="transaction-item">
+      <div class="t-left">
+        <span class="t-title">Salary Credit</span>
+        <span class="t-date">01 Feb</span>
+      </div>
+      <span class="t-amount credit">+₹ 25,000</span>
+    </div>
+
+  </div>
+
+  
+  </div>
+
+  <!-- PROFILE DETAILS -->
+  <div class="card">
+    <div class="section-title">Profile Details</div>
+    <div class="profile-row"><span>Name</span><span>P Gowda</span></div>
+    <div class="profile-row"><span>Phone</span><span>+91 9876543210</span></div>
+    <div class="profile-row"><span>Email</span><span>gowda@example.com</span></div>
+    <div class="profile-row"><span>KYC</span><span>Verified ✔</span></div>
+    <div class="profile-row"><span>Address</span><span>Bengaluru, India</span></div>
+  </div>
+
+</div>
+
+</body>
+</html>
+
+</body>
+</html>
+<style>
+/* ================= FOOTER START ================= */
+
+footer{
+ background: linear-gradient(180deg, #1e1e3f, #342e6a, #4e2b8c);
+
+
+  color:#fff;
+  padding:70px 6%;
+  margin-top:80px;
+  position:relative;
+  overflow:hidden;
+  font-family:"Poppins",sans-serif;
+}
+
+/* Soft glow */
+footer::before{
+  content:"";
+  position:absolute;
+  top:-120px;
+  left:0;
+  width:120%;
+  height:220px;
+ 
+}
+
+
+/* GRID LAYOUT FIXED */
+.footer-container{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap:50px;
+  position:relative;
+  z-index:2;
+}
+
+/* LEFT */
+.footer-left img{
+  height:58px;
+  margin-bottom:12px;
+  object-fit:contain;
+}
+
+.footer-left p{
+  opacity:0.85;
+  margin:12px 0 18px;
+  line-height:1.6;
+  font-size:14px;
+  max-width:280px;
+}
+
+/* SOCIAL ICONS */
+.social-icons{
+  display:flex;
+  gap:14px;
+  margin-top:12px;
+}
+.social-icons a{
+  height:42px;width:42px;
+  border-radius:50%;
+  background:#ffffff20;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  transition:.3s;
+}
+.social-icons a:hover{
+  background:#00eaff;
+  transform:translateY(-6px) scale(1.1);
+}
+.social-icons img{
+  height:20px;width:20px;
+}
+
+/* CENTER LINKS */
+.footer-links h3,
+.footer-contact h3{
+  margin-bottom:16px;
+  font-size:22px;
+  color:#00eaff;
+}
+
+.footer-links a{
+  display:block;
+  text-decoration:none;
+  color:#cbd5e1;
+  margin:6px 0;
+  font-size:15px;
+  transition:.3s;
+}
+.footer-links a:hover{
+  transform:translateX(6px);
+  color:#00eaff;
+}
+
+/* RIGHT CONTACT */
+.footer-contact p{
+  margin:6px 0;
+  opacity:.9;
+  font-size:15px;
+}
+
+/* SUBSCRIBE */
+.subscribe-box{
+  margin-top:16px;
+  display:flex;
+  width:100%;
+  max-width:320px;
+}
+.subscribe-box input{
+  flex:1;
+  padding:12px 14px;
+  background:#ffffff12;
+  border:none;
+  border-radius:6px 0 0 6px;
+  color:white;
+  outline:none;
+}
+.subscribe-box button{
+  padding:12px 20px;
+  background:#00eaff;
+  border:none;
+  color:#001;
+  font-weight:700;
+  border-radius:0 6px 6px 0;
+  cursor:pointer;
+}
+
+/* BOTTOM COPYRIGHT */
+.footer-bottom{
+  text-align:center;
+  margin-top:40px;
+  padding-top:18px;
+  border-top:1px solid #1e293b;
+  opacity:.8;
+  font-size:14px;
+}
+
+/* MOBILE VIEW FIX */
+/* MOBILE VIEW FIX */
+@media(max-width:900px){
+  
+  .footer-container{
+    grid-template-columns:1fr;
+    gap:45px;
+    text-align:center;
+  }
+
+  /* Left section */
+  .footer-left p{
+    margin:auto;
+  }
+
+  .social-icons{
+    justify-content:center;
+  }
+
+  /* QUICK LINKS */
+  .footer-links{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;   /* center block */
+  }
+
+  .footer-links h3{
+    text-align:center;
+    width:100%;
+  }
+
+  .footer-links a{
+    width:100%;
+    max-width:220px;      /* keeps good width */
+    text-align:start;     /* TEXT LEFT */
+    margin:4px 0;
+    padding-left:0;
+    margin-left: 130px;
+  }
+
+  /* Contact section */
+  .footer-contact{
+    text-align:center;
+  }
+
+  /* Subscribe input responsiveness */
+  .subscribe-box{
+    flex-direction:column;
+    max-width:none;
+  }
+  .subscribe-box input{
+    width:100%;
+    border-radius:6px;
+    margin-bottom:10px;
+  }
+  .subscribe-box button{
+    width:100%;
+    border-radius:6px;
+  }
+}
+
+</style>
+
+<footer>
+  <div class="footer-container">
+
+    <!-- LEFT -->
+    <div class="footer-left">
+      <img src="Screenshot (7) (1) (1).webp" alt="Company Logo">
+      <p>Our digital banking platform provides customers with 24/7 access to essential financial services...</p>
+
+      <div class="social-icons">
+        <a href="404.html"><img src="facebook.webp" alt="Facebook"></a>
+        <a href="404.html"><img src="twitter-logo.webp" alt="Twitter"></a>
+        <a href="404.html"><img src="linkedin.webp" alt="LinkedIn"></a>
+        <a href="404.html"><img src="instagram.webp" alt="Instagram"></a>
+      </div>
+    </div>
+
+    <!-- CENTER -->
+    <div class="footer-links">
+      <h3>Quick Links</h3>
+      <a href="index.html">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="account.html">Account</a>
+      <a href="loans.html">Loans</a>
+      <a href="investment.html">Investment</a>
+      <a href="cards.html">Cards</a>
+      <a href="carreer.html">Career</a>
+      <a href="signup.html">Signup</a>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="footer-contact">
+      <h3>Contact Us</h3>
+      <p>📍 Bengaluru, Karnataka</p>
+      <p>📞 +91 98765 43210</p>
+      <p>✉ support@stacklybank.com</p>
+
+      <form action="404.html" method="get" class="subscribe-box">
+        <input type="email" name="email" placeholder="Enter your email" required>
+        <button type="submit">Join</button>
+      </form>
+    </div>
+
+  </div>
+
+  <p class="footer-bottom">© 2025 Stackly Bank. All Rights Reserved.</p>
+</footer>
+
+<!-- ================= FOOTER END ================= -->

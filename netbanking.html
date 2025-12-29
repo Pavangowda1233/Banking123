@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced Neon Navbar</title>
+
+<style>
+
+/* RESET */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Poppins",sans-serif;
+}
+
+/* BEAUTIFUL BODY */
+body{
+  background: linear-gradient(135deg, #a8c0ff, #3f2b96);
+  height:150vh;
+  padding-top:90px;
+
+}
+
+/* FULL FIXED NAV */
+nav{
+  position:fixed;
+  top:0;
+  left:0;                   /* FIXED LEFT */
+  width:100%;
+  background:linear-gradient(135deg, #6f00ff, #0097ff);
+  backdrop-filter:blur(20px);
+  padding:16px 28px;        /* REDUCED TO FIT DESKTOP */
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  box-shadow:0 5px 25px rgba(0,0,0,0.35);
+  z-index:2000;
+}
+
+/* LOGO */
+.logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.logo img{
+  width:130px;
+  height:auto;
+}
+
+/* NAV LINKS — DESKTOP */
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:30px;
+  margin-left:auto;        /* CLEAN ALIGNMENT FIX */
+}
+
+/* NAV LINK STYLE */
+.nav-links a, .dropdown-btn{
+  font-size:16px;
+  font-weight:600;
+  color:white;
+  text-decoration:none;
+  padding:10px 14px;
+  border-radius:8px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+/* HOVER GLOW */
+.nav-links a:hover, .dropdown-btn:hover{
+  background:rgba(255,255,255,0.25);
+  box-shadow:0 0 15px rgba(255,255,255,0.7);
+  transform:translateY(-3px);
+}
+
+/* DROPDOWN */
+.dropdown{
+  position:relative;
+}
+
+.dropdown-content{
+  background:white;
+  position:absolute;
+  top:50px;
+  left:0;
+  width:160px;
+  border-radius:12px;
+  box-shadow:0 8px 25px rgba(0,0,0,0.25);
+  display:none;
+  flex-direction:column;
+  overflow:hidden;
+}
+
+.dropdown-content a{
+  padding:12px 20px;
+  font-size:15px;
+  font-weight:500;
+  color:#333;
+}
+
+.dropdown-content a:hover{
+  background:#ececff;
+  color:#4b00ff;
+}
+
+/* HAMBURGER */
+.hamburger{
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  cursor:pointer;
+}
+.hamburger span{
+  width:28px;
+  height:3px;
+  background:white;
+  border-radius:5px;
+  transition:0.4s;
+}
+
+/* MOBILE VIEW */
+@media(max-width:850px){
+
+  .hamburger{ display:flex; }
+
+  /* mobile menu */
+  .nav-links{
+    position:fixed;
+    top:90px;
+    right:-100%;
+    width:260px;
+    height:100vh;
+    background:linear-gradient(135deg, #3f2b96, #6f00ff);
+    flex-direction:column;
+    padding-top:50px;
+    gap:25px;
+    box-shadow:-10px 0 25px rgba(0,0,0,0.3);
+    transition:0.5s;
+  }
+
+  .nav-links.show{
+    right:0;
+  }
+
+  .dropdown-content{
+    position:relative;
+    top:0;
+    width:100%;
+    box-shadow:none;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+
+  <!-- LOGO -->
+  <div class="logo">
+    <img src="Screenshot (7) (1) (1).webp">
+  </div>
+
+  <!-- HAMBURGER -->
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- NAV LINKS -->
+   <div class="nav-links" id="menu">
+
+    <div class="dropdown">
+      <div class="dropdown-btn" onclick="toggleDropdown()">Home ▾</div>
+      <div class="dropdown-content" id="dropMenu">
+        <a href="index.html">Home 1</a>
+        <a href="Home2.html">Home 2</a>
+      </div>
+    </div>
+
+    <a href="netbanking.html">Netbanking</a>
+     <a href="services.html">Services</a>
+    <a href="upi.html">UPI</a>
+    <a href="about.html">About</a>
+    <a href="blog.html">Blog</a>
+     <a href="contact.html">Contact</a>
+      <a href="signup1.html">signup</a>
+  </div>
+</nav>
+
+
+
+<script>
+/* MOBILE MENU OPEN/CLOSE */
+function toggleMenu(){
+  document.getElementById("menu").classList.toggle("show");
+}
+
+/* DROPDOWN CLICK OPEN/CLOSE */
+function toggleDropdown(){
+  const drop = document.getElementById("dropMenu");
+  drop.style.display = (drop.style.display === "flex") ? "none" : "flex";
+}
+</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stackly NetBanking – Dashboard</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* RESET */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Poppins",sans-serif;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:radial-gradient(circle at top,#192041,#050816 60%);
+  color:#e9f0ff;
+  padding:18px;
+  overflow-x:hidden;
+}
+
+/* WRAPPER */
+.wrapper{
+  max-width:1150px;
+  margin:0 auto 40px;
+}
+
+/* HEADER / TOP BAR */
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px 8px 20px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.brand-logo{
+  width:38px;
+  height:38px;
+  border-radius:14px;
+  background:linear-gradient(135deg,#00f5ff,#00b0ff,#306bff);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+  font-size:20px;
+  color:#020617;
+  box-shadow:0 0 22px rgba(0,191,255,0.7);
+}
+.brand-text{
+  display:flex;
+  flex-direction:column;
+}
+.brand-text span:first-child{
+  font-weight:600;
+  letter-spacing:.05em;
+  font-size:13px;
+  text-transform:uppercase;
+  color:#a1acff;
+}
+.brand-text span:last-child{
+  font-size:18px;
+  font-weight:700;
+}
+
+.user-chip{
+  font-size:13px;
+  padding:8px 14px;
+  border-radius:999px;
+  background:#020617;
+  border:1px solid #303a7c;
+  box-shadow:0 8px 20px rgba(0,0,0,0.6);
+}
+
+/* MAIN GRID */
+.main-grid{
+  display:grid;
+  grid-template-columns:1.3fr 1fr;
+  gap:20px;
+}
+@media(max-width:900px){
+  .main-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+/* GLASS CARD */
+.card{
+  background:linear-gradient(135deg,rgba(23,31,73,0.96),rgba(8,11,30,0.98));
+  border-radius:20px;
+  padding:18px 18px 16px;
+  border:1px solid rgba(85,107,255,0.35);
+  box-shadow:0 18px 40px rgba(0,0,0,0.8);
+}
+
+/* BALANCE CARD */
+.balance-label{
+  font-size:13px;
+  color:#a9b5ff;
+}
+.balance-amount{
+  margin-top:4px;
+  font-size:32px;
+  font-weight:600;
+}
+.balance-sub{
+  font-size:12px;
+  color:#9aa4ff;
+  margin-top:4px;
+}
+.balance-row{
+  margin-top:14px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.balance-chip{
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid #384285;
+  font-size:11px;
+  background:#05071b;
+}
+
+/* QUICK ACTIONS */
+.actions{
+  margin-top:18px;
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0,1fr));
+  gap:10px;
+}
+.action-btn{
+  border:none;
+  border-radius:14px;
+  padding:10px 10px;
+  font-size:12px;
+  background:linear-gradient(135deg,#2563eb,#22c1c3);
+  color:#eaf6ff;
+  cursor:pointer;
+  box-shadow:0 10px 25px rgba(37,99,235,.6);
+  transition:.25s;
+}
+.action-btn:nth-child(2){
+  background:linear-gradient(135deg,#8b5cf6,#ec4899);
+  box-shadow:0 10px 25px rgba(139,92,246,.5);
+}
+.action-btn:nth-child(3){
+  background:linear-gradient(135deg,#22c55e,#14b8a6);
+  box-shadow:0 10px 25px rgba(34,197,94,.5);
+}
+.action-btn:hover{
+  transform:translateY(-2px);
+}
+
+/* SMALL LABEL */
+.section-title{
+  font-size:14px;
+  font-weight:600;
+  margin-bottom:8px;
+}
+
+/* ACTIVITY LIST */
+.activity-list{
+  margin-top:6px;
+}
+.activity-row{
+  display:flex;
+  justify-content:space-between;
+  padding:8px 0;
+  border-bottom:1px solid rgba(61,72,132,0.6);
+  font-size:12px;
+}
+.activity-row:last-child{
+  border-bottom:none;
+}
+.activity-row span:first-child{
+  color:#cbd5ff;
+}
+
+/* RIGHT SIDE – BILLS / LOGINS */
+.chip-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:8px;
+}
+.small-chip{
+  padding:6px 10px;
+  border-radius:999px;
+  font-size:11px;
+  background:#050818;
+  border:1px solid #384285;
+  color:#a5b4ff;
+}
+
+/* BILL ITEM */
+.bill-item{
+  margin-top:10px;
+  padding:10px 11px;
+  border-radius:12px;
+  background:#0a0f27;
+  border:1px solid #333d7a;
+  font-size:12px;
+  display:flex;
+  justify-content:space-between;
+}
+.bill-item span:last-child{
+  color:#facc15;
+  font-weight:600;
+}
+
+/* LOGINS */
+.login-row{
+  display:flex;
+  justify-content:space-between;
+  padding:7px 0;
+  font-size:12px;
+}
+.login-row span:first-child{
+  color:#a5b4ff;
+}
+
+/* SECOND ROW GRID */
+.row-grid{
+  margin-top:20px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+@media(max-width:900px){
+  .row-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+/* PAYMENTS GRID */
+.pay-grid{
+  margin-top:6px;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;
+}
+.pay-tile{
+  background:#050818;
+  border-radius:14px;
+  padding:10px;
+  font-size:12px;
+  border:1px solid #333f7a;
+}
+.pay-tile strong{
+  display:block;
+  margin-bottom:4px;
+}
+
+/* MINI TXNS */
+.txn-list{
+  margin-top:8px;
+}
+.txn-row{
+  display:flex;
+  justify-content:space-between;
+  padding:6px 0;
+  font-size:12px;
+  border-bottom:1px dashed rgba(64,75,132,0.7);
+}
+.txn-row:last-child{
+  border-bottom:none;
+}
+.debit{ color:#f97373; font-weight:600;}
+.credit{ color:#4ade80; font-weight:600;}
+
+/* SECURITY BOX */
+.security-list{
+  margin-top:6px;
+}
+.security-item{
+  display:flex;
+  align-items:flex-start;
+  gap:8px;
+  font-size:12px;
+  margin-bottom:6px;
+}
+.security-dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#22c55e;
+  margin-top:4px;
+}
+
+/* HELP / FOOTER AREA */
+.help-box{
+  margin-top:10px;
+  font-size:12px;
+}
+.help-tag{
+  display:inline-block;
+  padding:5px 8px;
+  border-radius:999px;
+  border:1px solid #4b5ad1;
+  background:#050815;
+  margin-right:6px;
+}
+
+/* MOBILE TWEAKS */
+@media(max-width:600px){
+  body{padding:14px;}
+  .balance-amount{font-size:26px;}
+  .topbar{flex-direction:column;align-items:flex-start;gap:10px;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-logo">S</div>
+      <div class="brand-text">
+        <span>STACKLY NETBANKING</span>
+        <span>Welcome, P Gowda</span>
+      </div>
+    </div>
+    <div class="user-chip">Last login: Today • 1:22 PM</div>
+  </header>
+
+  <!-- MAIN GRID -->
+  <div class="main-grid">
+
+    <!-- LEFT SIDE: BALANCE + ACTIONS + ACTIVITY -->
+    <div class="card">
+      <div class="balance-label">Primary Account Balance</div>
+      <div class="balance-amount">₹ 2,48,920.50</div>
+      <div class="balance-sub">A/C No: 9876 5432 1123 • IFSC: STBK0123456</div>
+
+      <div class="balance-row">
+        <div class="balance-chip">Savings Account</div>
+        <div class="balance-chip">Branch: Bengaluru – MG Road</div>
+        <div class="balance-chip">UPI ID: gowda@stackly</div>
+      </div>
+
+      <!-- QUICK ACTIONS -->
+      <div class="section-title" style="margin-top:18px;">Quick Actions</div>
+      <div class="actions">
+      <a href="4041.html"><button class="action-btn">Send Money</button></a> 
+       <a href="4041.html"><button class="action-btn">Pay Bills</button></a> 
+   <a href="4041.html"><button class="action-btn">Download Statement</button></a> 
+      </div>
+
+      <!-- RECENT ACTIVITY -->
+      <div class="section-title" style="margin-top:20px;">Recent NetBanking Activity</div>
+      <div class="activity-list">
+        <div class="activity-row">
+          <span>Logged in via Desktop</span>
+          <span>Today • 1:22 PM</span>
+        </div>
+        <div class="activity-row">
+          <span>UPI Transfer to Rahul UPI</span>
+          <span>- ₹ 850</span>
+        </div>
+        <div class="activity-row">
+          <span>Electricity Bill Paid</span>
+          <span>- ₹ 1,280</span>
+        </div>
+        <div class="activity-row">
+          <span>Salary Credit – Stackly Pvt Ltd</span>
+          <span>+ ₹ 25,000</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT SIDE: BILLS + LOGINS -->
+    <div class="card">
+      <div class="section-title">Upcoming Bills & Reminders</div>
+      <div class="chip-row">
+    
+      </div>
+
+      <div class="bill-item">
+        <span>Electricity – BESCOM</span>
+        <span>Due: 12 Mar • ₹ 1,540</span>
+      </div>
+      <div class="bill-item">
+        <span>Mobile – Jio</span>
+        <span>Due: 08 Mar • ₹ 499</span>
+      </div>
+      <div class="bill-item">
+        <span>Credit Card – Stackly Card</span>
+        <span>Due: 15 Mar • ₹ 12,800</span>
+      </div>
+
+      <div class="section-title" style="margin-top:18px;">Recent Login History</div>
+      <div class="login-row">
+        <span>Android • Stackly App</span>
+        <span>Today • 10:05 AM</span>
+      </div>
+      <div class="login-row">
+        <span>Chrome • Windows</span>
+        <span>Yesterday • 9:12 PM</span>
+      </div>
+      <div class="login-row">
+        <span>Android • Stackly App</span>
+        <span>02 Mar • 7:35 PM</span>
+      </div>
+      <div class="login-row">
+        <span>iOS • Stackly App</span>
+        <span>01 Mar • 8:10 AM</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SECOND ROW: PAYMENTS + SECURITY -->
+  <div class="row-grid">
+
+    <!-- PAYMENTS & TRANSACTIONS -->
+    <div class="card">
+      <div class="section-title">NetBanking Payments Center</div>
+      <div style="font-size:12px;color:#cbd5ff;">
+        Use Stackly NetBanking to manage all your regular payments from one place.
+      </div>
+
+      <div class="pay-grid">
+        <div class="pay-tile">
+          <strong>UPI</strong>
+          <span>Instant transfers using UPI ID & QR.</span>
+        </div>
+        <div class="pay-tile">
+          <strong>NEFT / RTGS</strong>
+          <span>High-value transfers to any bank account.</span>
+        </div>
+        <div class="pay-tile">
+          <strong>BillPay</strong>
+          <span>Electricity, DTH, Mobile, Broadband.</span>
+        </div>
+        <div class="pay-tile">
+          <strong>Card Payment</strong>
+          <span>Pay Stackly or other bank credit cards.</span>
+        </div>
+        <div class="pay-tile">
+          <strong>EMI / Loan</strong>
+          <span>Pay EMIs and part-pay instantly.</span>
+        </div>
+        <div class="pay-tile">
+          <strong>Standing Instructions</strong>
+          <span>Auto-debit for rent, SIPs, school fees.</span>
+        </div>
+      </div>
+
+      <div class="section-title" style="margin-top:16px;">Last 4 Transactions</div>
+      <div class="txn-list">
+        <div class="txn-row">
+          <span>UPI – Grocery Store</span>
+          <span class="debit">- ₹ 720</span>
+        </div>
+        <div class="txn-row">
+          <span>NEFT – House Rent</span>
+          <span class="debit">- ₹ 12,000</span>
+        </div>
+        <div class="txn-row">
+          <span>IMPS – Transfer from Friend</span>
+          <span class="credit">+ ₹ 2,500</span>
+        </div>
+        <div class="txn-row">
+          <span>AutoPay – OTT Subscription</span>
+          <span class="debit">- ₹ 199</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECURITY + HELP -->
+    <div class="card">
+      <div class="section-title">Security & NetBanking Safety</div>
+      <div style="font-size:12px;color:#cbd5ff;">
+        Stackly NetBanking uses multiple layers of security to protect your account.
+      </div>
+
+      <div class="security-list">
+        <div class="security-item" style="margin-top:10px;">
+          <div class="security-dot"></div>
+          <div>End-to-end encryption for every login and transaction.</div>
+        </div>
+        <div class="security-item">
+          <div class="security-dot"></div>
+          <div>2-Factor Authentication with OTP + password or device PIN.</div>
+        </div>
+        <div class="security-item">
+          <div class="security-dot"></div>
+          <div>Real-time fraud monitoring & login alerts on SMS / email.</div>
+        </div>
+        <div class="security-item">
+          <div class="security-dot"></div>
+          <div>Instant card & account lock from NetBanking if you suspect misuse.</div>
+        </div>
+      </div>
+
+      <div class="section-title" style="margin-top:18px;">Your Safety Tips</div>
+      <div class="security-list">
+        <div class="security-item">
+          <div class="security-dot" style="background:#f97373;"></div>
+          <div>Never share your OTP, PIN, CVV or passwords with anyone – even Stackly staff.</div>
+        </div>
+        <div class="security-item">
+          <div class="security-dot" style="background:#f97373;"></div>
+          <div>Always check the URL: use only official Stackly NetBanking sites and apps.</div>
+        </div>
+        <div class="security-item">
+          <div class="security-dot" style="background:#f97373;"></div>
+          <div>Do not click on unknown links received via SMS, email or social media.</div>
+        </div>
+      </div>
+
+      <div class="section-title" style="margin-top:18px;">Need Help?</div>
+      <div class="help-box">
+        <div>
+       
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>
+
+<style>
+/* ================= FOOTER START ================= */
+
+footer{
+ background: linear-gradient(180deg, #1e1e3f, #342e6a, #4e2b8c);
+
+
+  color:#fff;
+  padding:70px 6%;
+  margin-top:80px;
+  position:relative;
+  overflow:hidden;
+  font-family:"Poppins",sans-serif;
+}
+
+/* Soft glow */
+footer::before{
+  content:"";
+  position:absolute;
+  top:-120px;
+  left:0;
+  width:120%;
+  height:220px;
+ 
+}
+
+
+/* GRID LAYOUT FIXED */
+.footer-container{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap:50px;
+  position:relative;
+  z-index:2;
+}
+
+/* LEFT */
+.footer-left img{
+  height:58px;
+  margin-bottom:12px;
+  object-fit:contain;
+}
+
+.footer-left p{
+  opacity:0.85;
+  margin:12px 0 18px;
+  line-height:1.6;
+  font-size:14px;
+  max-width:280px;
+}
+
+/* SOCIAL ICONS */
+.social-icons{
+  display:flex;
+  gap:14px;
+  margin-top:12px;
+}
+.social-icons a{
+  height:42px;width:42px;
+  border-radius:50%;
+  background:#ffffff20;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  transition:.3s;
+}
+.social-icons a:hover{
+  background:#00eaff;
+  transform:translateY(-6px) scale(1.1);
+}
+.social-icons img{
+  height:20px;width:20px;
+}
+
+/* CENTER LINKS */
+.footer-links h3,
+.footer-contact h3{
+  margin-bottom:16px;
+  font-size:22px;
+  color:#00eaff;
+}
+
+.footer-links a{
+  display:block;
+  text-decoration:none;
+  color:#cbd5e1;
+  margin:6px 0;
+  font-size:15px;
+  transition:.3s;
+}
+.footer-links a:hover{
+  transform:translateX(6px);
+  color:#00eaff;
+}
+
+/* RIGHT CONTACT */
+.footer-contact p{
+  margin:6px 0;
+  opacity:.9;
+  font-size:15px;
+}
+
+/* SUBSCRIBE */
+.subscribe-box{
+  margin-top:16px;
+  display:flex;
+  width:100%;
+  max-width:320px;
+}
+.subscribe-box input{
+  flex:1;
+  padding:12px 14px;
+  background:#ffffff12;
+  border:none;
+  border-radius:6px 0 0 6px;
+  color:white;
+  outline:none;
+}
+.subscribe-box button{
+  padding:12px 20px;
+  background:#00eaff;
+  border:none;
+  color:#001;
+  font-weight:700;
+  border-radius:0 6px 6px 0;
+  cursor:pointer;
+}
+
+/* BOTTOM COPYRIGHT */
+.footer-bottom{
+  text-align:center;
+  margin-top:40px;
+  padding-top:18px;
+  border-top:1px solid #1e293b;
+  opacity:.8;
+  font-size:14px;
+}
+
+/* MOBILE VIEW FIX */
+/* MOBILE VIEW FIX */
+@media(max-width:900px){
+  
+  .footer-container{
+    grid-template-columns:1fr;
+    gap:45px;
+    text-align:center;
+  }
+
+  /* Left section */
+  .footer-left p{
+    margin:auto;
+  }
+
+  .social-icons{
+    justify-content:center;
+  }
+
+  /* QUICK LINKS */
+  .footer-links{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;   /* center block */
+  }
+
+  .footer-links h3{
+    text-align:center;
+    width:100%;
+  }
+
+  .footer-links a{
+    width:100%;
+    max-width:220px;      /* keeps good width */
+    text-align:start;     /* TEXT LEFT */
+    margin:4px 0;
+    padding-left:0;
+    margin-left: 130px;
+  }
+
+  /* Contact section */
+  .footer-contact{
+    text-align:center;
+  }
+
+  /* Subscribe input responsiveness */
+  .subscribe-box{
+    flex-direction:column;
+    max-width:none;
+  }
+  .subscribe-box input{
+    width:100%;
+    border-radius:6px;
+    margin-bottom:10px;
+  }
+  .subscribe-box button{
+    width:100%;
+    border-radius:6px;
+  }
+}
+
+</style>
+
+<footer>
+  <div class="footer-container">
+
+    <!-- LEFT -->
+    <div class="footer-left">
+      <img src="Screenshot (7) (1) (1).webp" alt="Company Logo">
+      <p>Our digital banking platform provides customers with 24/7 access to essential financial services...</p>
+
+      <div class="social-icons">
+        <a href="4041.html"><img src="facebook.webp" alt="Facebook"></a>
+        <a href="4041.html"><img src="twitter-logo.webp" alt="Twitter"></a>
+        <a href="4041.html"><img src="linkedin.webp" alt="LinkedIn"></a>
+        <a href="4041.html"><img src="instagram.webp" alt="Instagram"></a>
+      </div>
+    </div>
+
+    <!-- CENTER -->
+    <div class="footer-links">
+      <h3>Quick Links</h3>
+      <a href="Home2.html">Home</a>
+      <a href="netbanking.html">Netbanking</a>
+     <a href="services.html">Services</a>
+    <a href="upi.html">UPI</a>
+    <a href="about.html">About</a>
+    <a href="blog.html">Blog</a>
+     <a href="contact.html">Contact</a>
+      <a href="signup1.html">Signup</a>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="footer-contact">
+      <h3>Contact Us</h3>
+      <p>📍 Bengaluru, Karnataka</p>
+      <p>📞 +91 98765 43210</p>
+      <p>✉ support@stacklybank.com</p>
+
+      <form action="4041.html" method="get" class="subscribe-box">
+        <input type="email" name="email" placeholder="Enter your email" required>
+        <button type="submit">Join</button>
+      </form>
+    </div>
+
+  </div>
+
+  <p class="footer-bottom">© 2025 Stackly Bank. All Rights Reserved.</p>
+</footer>
+
+<!-- ================= FOOTER END ================= -->

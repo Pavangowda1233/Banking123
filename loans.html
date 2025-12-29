@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced Neon Navbar</title>
+
+<style>
+
+/* RESET */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Poppins",sans-serif;
+}
+
+/* BEAUTIFUL BODY */
+body{
+  background: linear-gradient(135deg, #a8c0ff, #3f2b96);
+  height:150vh;
+  padding-top:90px;
+  margin-top: 80px;
+}
+
+/* FULL FIXED NAV */
+nav{
+  position:fixed;
+  top:0;
+  left:0;                   /* FIXED LEFT */
+  width:100%;
+  background:linear-gradient(135deg, #6f00ff, #0097ff);
+  backdrop-filter:blur(20px);
+  padding:16px 28px;        /* REDUCED TO FIT DESKTOP */
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  box-shadow:0 5px 25px rgba(0,0,0,0.35);
+  z-index:2000;
+}
+
+/* LOGO */
+.logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.logo img{
+  width:130px;
+  height:auto;
+}
+
+/* NAV LINKS — DESKTOP */
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:30px;
+  margin-left:auto;        /* CLEAN ALIGNMENT FIX */
+}
+
+/* NAV LINK STYLE */
+.nav-links a, .dropdown-btn{
+  font-size:16px;
+  font-weight:600;
+  color:white;
+  text-decoration:none;
+  padding:10px 14px;
+  border-radius:8px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+/* HOVER GLOW */
+.nav-links a:hover, .dropdown-btn:hover{
+  background:rgba(255,255,255,0.25);
+  box-shadow:0 0 15px rgba(255,255,255,0.7);
+  transform:translateY(-3px);
+}
+
+/* DROPDOWN */
+.dropdown{
+  position:relative;
+}
+
+.dropdown-content{
+  background:white;
+  position:absolute;
+  top:50px;
+  left:0;
+  width:160px;
+  border-radius:12px;
+  box-shadow:0 8px 25px rgba(0,0,0,0.25);
+  display:none;
+  flex-direction:column;
+  overflow:hidden;
+}
+
+.dropdown-content a{
+  padding:12px 20px;
+  font-size:15px;
+  font-weight:500;
+  color:#333;
+}
+
+.dropdown-content a:hover{
+  background:#ececff;
+  color:#4b00ff;
+}
+
+/* HAMBURGER */
+.hamburger{
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  cursor:pointer;
+}
+.hamburger span{
+  width:28px;
+  height:3px;
+  background:white;
+  border-radius:5px;
+  transition:0.4s;
+}
+
+/* MOBILE VIEW */
+@media(max-width:850px){
+
+  .hamburger{ display:flex; }
+
+  /* mobile menu */
+  .nav-links{
+    position:fixed;
+    top:90px;
+    right:-100%;
+    width:260px;
+    height:100vh;
+    background:linear-gradient(135deg, #3f2b96, #6f00ff);
+    flex-direction:column;
+    padding-top:50px;
+    gap:25px;
+    box-shadow:-10px 0 25px rgba(0,0,0,0.3);
+    transition:0.5s;
+  }
+
+  .nav-links.show{
+    right:0;
+  }
+
+  .dropdown-content{
+    position:relative;
+    top:0;
+    width:100%;
+    box-shadow:none;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+
+  <!-- LOGO -->
+  <div class="logo">
+    <img src="Screenshot (7) (1) (1).webp">
+  </div>
+
+  <!-- HAMBURGER -->
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- NAV LINKS -->
+   <div class="nav-links" id="menu">
+
+    <div class="dropdown">
+      <div class="dropdown-btn" onclick="toggleDropdown()">Home ▾</div>
+      <div class="dropdown-content" id="dropMenu">
+        <a href="index.html">Home 1</a>
+        <a href="Home2.html">Home 2</a>
+      </div>
+    </div>
+
+    <a href="dashboard.html">Dashboard</a>
+     <a href="account.html">Account</a>
+    <a href="loans.html">Loans</a>
+    <a href="investment.html">Investment</a>
+    <a href="cards.html">Cards</a>
+    <a href="carreer.html">Career</a>
+     <a href="signup.html">Signup</a>
+  </div>
+</nav>
+
+
+
+<script>
+/* MOBILE MENU OPEN/CLOSE */
+function toggleMenu(){
+  document.getElementById("menu").classList.toggle("show");
+}
+
+/* DROPDOWN CLICK OPEN/CLOSE */
+function toggleDropdown(){
+  const drop = document.getElementById("dropMenu");
+  drop.style.display = (drop.style.display === "flex") ? "none" : "flex";
+}
+</script>
+
+</body>
+</html>
+
+
+<style>
+
+/* RESET */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Poppins",sans-serif;
+}
+
+body{
+  background:#0b1220;
+  padding:20px;
+  color:#e9f4ff;
+  overflow-x:hidden;
+}
+
+/* UNIVERSAL CARD */
+.card{
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:20px;
+  padding:22px;
+  margin-bottom:22px;
+  backdrop-filter:blur(16px);
+  box-shadow:0 20px 40px rgba(0,0,0,0.4);
+}
+
+/* SECTION TITLE */
+.section-title{
+  font-size:22px;
+  font-weight:600;
+  margin-bottom:16px;
+}
+
+/* TOP LOAN SUMMARY SECTION */
+.summary-box{
+  background:linear-gradient(135deg,#00b7ff,#00ffd9);
+  color:#001119;
+  padding:28px;
+  border-radius:22px;
+  box-shadow:0 25px 40px rgba(0,255,200,0.25);
+}
+
+.summary-heading{
+  font-size:18px;
+  opacity:0.85;
+}
+
+.summary-amount{
+  font-size:42px;
+  font-weight:700;
+  margin-top:5px;
+}
+
+.summary-id{
+  opacity:0.75;
+  margin-top:5px;
+}
+
+/*** EMI MINI INFO GRID ***/
+.emi-grid{
+  margin-top:18px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:15px;
+}
+
+.emi-info{
+  background:white;
+  color:#003a55;
+  padding:14px 18px;
+  border-radius:14px;
+  width:31%;
+  min-width:90px;
+  box-shadow:0 10px 25px rgba(255,255,255,0.4);
+}
+.emi-info div:first-child{
+  font-size:12px;
+  opacity:0.7;
+}
+.emi-info div:last-child{
+  font-weight:600;
+  margin-top:3px;
+}
+
+/*** ACTION BUTTONS ***/
+.actions{
+  margin-top:20px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+}
+
+.action-btn{
+  padding:12px 20px;
+  border:none;
+  border-radius:50px;
+  font-weight:600;
+  cursor:pointer;
+  box-shadow:0 10px 25px rgba(0,0,0,0.3);
+  font-size:14px;
+}
+
+.primary-btn{
+  background:#001f52;
+  color:white;
+}
+
+.secondary-btn{
+  background:white;
+  color:#004d92;
+}
+
+/* GRID 2 for desktop */
+.grid-2{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:22px;
+}
+@media(max-width:780px){
+  .grid-2{
+    grid-template-columns:1fr;
+  }
+}
+
+/* ACTIVE LOAN BOX */
+.loan-item{
+  background:rgba(255,255,255,0.08);
+  padding:16px;
+  border-radius:14px;
+  margin-bottom:14px;
+  border:1px solid rgba(255,255,255,0.1);
+}
+
+.loan-top{
+  display:flex;
+  justify-content:space-between;
+}
+
+.loan-name{
+  font-size:16px;
+  font-weight:600;
+}
+
+.loan-status{
+  font-size:13px;
+  padding:6px 10px;
+  border-radius:8px;
+  font-weight:600;
+}
+
+.approved{ background:#d7ffe7; color:#00753c; }
+.pending { background:#fff2b3; color:#9b7c00; }
+
+/* PROGRESS BAR */
+.progress{
+  width:100%;
+  height:8px;
+  border-radius:14px;
+  background:rgba(255,255,255,0.2);
+  margin-top:10px;
+}
+
+.progress-fill{
+  height:100%;
+  background:linear-gradient(135deg,#00d9ff,#2effc3);
+  border-radius:14px;
+}
+
+/* LOAN HISTORY */
+.history-row{
+  display:flex;
+  justify-content:space-between;
+  padding:10px 0;
+  border-bottom:1px solid rgba(255,255,255,0.1);
+}
+.history-row:last-child{ border-bottom:none; }
+
+.h-left{
+  display:flex;
+  flex-direction:column;
+}
+.h-amt{
+  font-weight:600;
+  font-size:15px;
+}
+.h-date{
+  opacity:0.6;
+  font-size:12px;
+}
+
+/* ============================ EMI CHART ============================ */
+
+.emi-chart{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  padding-top:10px;
+}
+
+.chart-col{
+  flex:1;
+  text-align:center;
+}
+
+.chart-bar{
+  width:100%;
+  max-width:70px;
+  height:160px;
+  background:rgba(255,255,255,0.15);
+  border-radius:14px;
+  margin:auto;
+  display:flex;
+  align-items:flex-end;
+  overflow:hidden;
+  position:relative;
+}
+
+.bar-fill{
+  width:100%;
+  border-radius:14px;
+  position:absolute;
+  bottom:0;
+}
+
+.p-fill{
+  background:linear-gradient(180deg,#00e0ff,#0075ff);
+}
+.i-fill{
+  background:linear-gradient(180deg,#00ffbc,#00e084);
+}
+.f-fill{
+  background:linear-gradient(180deg,#ffd900,#ff9100);
+}
+
+.chart-label{
+  font-size:14px;
+  margin-top:8px;
+}
+.chart-value{
+  font-size:12px;
+  opacity:0.7;
+}
+
+/* MOBILE FIX */
+@media(max-width:600px){
+  .chart-bar{ max-width:48px; height:120px; }
+  .chart-label{ font-size:12px; }
+  .chart-value{ font-size:11px; }
+}
+
+/* CALCULATOR */
+.calc-box input{
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:12px;
+  margin-bottom:10px;
+  font-size:14px;
+  background:rgba(255,255,255,0.15);
+  color:white;
+}
+
+.calc-btn{
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:12px;
+  background:#00afff;
+  font-weight:600;
+  font-size:15px;
+  margin-top:8px;
+}
+
+.output{
+  background:rgba(255,255,255,0.12);
+  margin-top:14px;
+  padding:14px;
+  border-radius:12px;
+  font-size:14px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="dashboard">
+
+  <!-- TOP LOAN SUMMARY -->
+  <div class="summary-box">
+    <div class="summary-heading">Total Active Loan Amount</div>
+    <div class="summary-amount">₹ 1,20,000</div>
+    <div class="summary-id">Loan ID: STL-9834431</div>
+
+    <div class="emi-grid">
+      <div class="emi-info">
+        <div>EMI / Month</div>
+        <div>₹ 8,300</div>
+      </div>
+      <div class="emi-info">
+        <div>Interest Rate</div>
+        <div>12.5%</div>
+      </div>
+      <div class="emi-info">
+        <div>Tenure</div>
+        <div>24 Months</div>
+      </div>
+    </div>
+
+    <div class="actions">
+     <a href="404.html"><button class="action-btn primary-btn">Pay EMI</button></a>
+     <a href="404.html"><button class="action-btn secondary-btn">Loan Statement</button></a>
+     <a href="404.html"><button class="action-btn secondary-btn">Foreclosure</button></a>
+    </div>
+  </div>
+
+  <!-- GRID: ACTIVE LOANS + HISTORY -->
+  <div class="grid-2">
+
+    <!-- ACTIVE LOANS -->
+    <div class="card">
+      <div class="section-title">Active Loans</div>
+
+      <div class="loan-item">
+        <div class="loan-top">
+          <span class="loan-name">Personal Loan</span>
+          <span class="loan-status approved">Approved</span>
+        </div>
+        <div class="progress"><div class="progress-fill" style="width:70%"></div></div>
+      </div>
+
+      <div class="loan-item">
+        <div class="loan-top">
+          <span class="loan-name">Education Loan</span>
+          <span class="loan-status pending">Pending</span>
+        </div>
+        <div class="progress"><div class="progress-fill" style="width:40%"></div></div>
+      </div>
+
+    </div>
+
+    <!-- HISTORY -->
+    <div class="card">
+      <div class="section-title">EMI Payment History</div>
+
+      <div class="history-row">
+        <div class="h-left">
+          <span class="h-amt">₹ 8,300 EMI</span>
+          <span class="h-date">Paid 10 Feb</span>
+        </div>
+        <span style="color:#00ffa4;font-weight:700;">PAID</span>
+      </div>
+
+      <div class="history-row">
+        <div class="h-left">
+          <span class="h-amt">₹ 8,300 EMI</span>
+          <span class="h-date">Paid 10 Jan</span>
+        </div>
+        <span style="color:#00ffa4;font-weight:700;">PAID</span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- EMI CHART -->
+  <div class="card">
+    <div class="section-title">EMI Breakdown Chart</div>
+
+    <div class="emi-chart">
+
+      <div class="chart-col">
+        <div class="chart-bar">
+          <div class="bar-fill p-fill" style="height:85%"></div>
+        </div>
+        <div class="chart-label">Principal</div>
+        <div class="chart-value">₹ 80,000</div>
+      </div>
+
+      <div class="chart-col">
+        <div class="chart-bar">
+          <div class="bar-fill i-fill" style="height:55%"></div>
+        </div>
+        <div class="chart-label">Interest</div>
+        <div class="chart-value">₹ 40,500</div>
+      </div>
+
+      <div class="chart-col">
+        <div class="chart-bar">
+          <div class="bar-fill f-fill" style="height:30%"></div>
+        </div>
+        <div class="chart-label">Processing</div>
+        <div class="chart-value">₹ 2,000</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- LOAN CALCULATOR -->
+  <div class="card calc-box">
+  <div class="section-title">Loan EMI Calculator</div>
+
+  <input type="number" id="loanAmount" placeholder="Loan Amount (₹)">
+  <input type="number" id="interestRate" placeholder="Interest Rate (%)">
+  <input type="number" id="tenureMonths" placeholder="Tenure (Months)">
+
+  <button class="calc-btn" onclick="calculateEMI()">Calculate EMI</button>
+
+  <div class="output" id="emiOutput">
+    EMI: ₹ 0.00 <br>
+    Total Interest: ₹ 0.00 <br>
+    Total Amount: ₹ 0.00
+  </div>
+</div>
+
+  <script>
+function calculateEMI() {
+    let P = parseFloat(document.getElementById("loanAmount").value); // Loan Amount
+    let R = parseFloat(document.getElementById("interestRate").value); // Interest Rate
+    let N = parseFloat(document.getElementById("tenureMonths").value); // Tenure Months
+
+    if (!P || !R || !N) {
+        document.getElementById("emiOutput").innerHTML =
+            "⚠️ Please enter all values correctly.";
+        return;
+    }
+
+    // Convert annual interest rate to monthly rate
+    let monthlyRate = R / 12 / 100;
+
+    // EMI Formula
+    let emi = (P * monthlyRate * Math.pow(1 + monthlyRate, N)) /
+              (Math.pow(1 + monthlyRate, N) - 1);
+
+    let totalAmount = emi * N;
+    let totalInterest = totalAmount - P;
+
+    // Update output
+    document.getElementById("emiOutput").innerHTML =
+        `EMI: ₹ ${emi.toFixed(2)} <br>
+         Total Interest: ₹ ${totalInterest.toFixed(2)} <br>
+         Total Amount: ₹ ${totalAmount.toFixed(2)}`;
+}
+</script>
+
+</script>
+</div>
+
+</body>
+</html>
+
+</body>
+</html>
+<style>
+/* ================= FOOTER START ================= */
+
+footer{
+ background: linear-gradient(180deg, #1e1e3f, #342e6a, #4e2b8c);
+
+
+  color:#fff;
+  padding:70px 6%;
+  margin-top:80px;
+  position:relative;
+  overflow:hidden;
+  font-family:"Poppins",sans-serif;
+}
+
+/* Soft glow */
+footer::before{
+  content:"";
+  position:absolute;
+  top:-120px;
+  left:0;
+  width:120%;
+  height:220px;
+ 
+}
+
+
+/* GRID LAYOUT FIXED */
+.footer-container{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap:50px;
+  position:relative;
+  z-index:2;
+}
+
+/* LEFT */
+.footer-left img{
+  height:58px;
+  margin-bottom:12px;
+  object-fit:contain;
+}
+
+.footer-left p{
+  opacity:0.85;
+  margin:12px 0 18px;
+  line-height:1.6;
+  font-size:14px;
+  max-width:280px;
+}
+
+/* SOCIAL ICONS */
+.social-icons{
+  display:flex;
+  gap:14px;
+  margin-top:12px;
+}
+.social-icons a{
+  height:42px;width:42px;
+  border-radius:50%;
+  background:#ffffff20;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  transition:.3s;
+}
+.social-icons a:hover{
+  background:#00eaff;
+  transform:translateY(-6px) scale(1.1);
+}
+.social-icons img{
+  height:20px;width:20px;
+}
+
+/* CENTER LINKS */
+.footer-links h3,
+.footer-contact h3{
+  margin-bottom:16px;
+  font-size:22px;
+  color:#00eaff;
+}
+
+.footer-links a{
+  display:block;
+  text-decoration:none;
+  color:#cbd5e1;
+  margin:6px 0;
+  font-size:15px;
+  transition:.3s;
+}
+.footer-links a:hover{
+  transform:translateX(6px);
+  color:#00eaff;
+}
+
+/* RIGHT CONTACT */
+.footer-contact p{
+  margin:6px 0;
+  opacity:.9;
+  font-size:15px;
+}
+
+/* SUBSCRIBE */
+.subscribe-box{
+  margin-top:16px;
+  display:flex;
+  width:100%;
+  max-width:320px;
+}
+.subscribe-box input{
+  flex:1;
+  padding:12px 14px;
+  background:#ffffff12;
+  border:none;
+  border-radius:6px 0 0 6px;
+  color:white;
+  outline:none;
+}
+.subscribe-box button{
+  padding:12px 20px;
+  background:#00eaff;
+  border:none;
+  color:#001;
+  font-weight:700;
+  border-radius:0 6px 6px 0;
+  cursor:pointer;
+}
+
+/* BOTTOM COPYRIGHT */
+.footer-bottom{
+  text-align:center;
+  margin-top:40px;
+  padding-top:18px;
+  border-top:1px solid #1e293b;
+  opacity:.8;
+  font-size:14px;
+}
+
+/* MOBILE VIEW FIX */
+/* MOBILE VIEW FIX */
+@media(max-width:900px){
+  
+  .footer-container{
+    grid-template-columns:1fr;
+    gap:45px;
+    text-align:center;
+  }
+
+  /* Left section */
+  .footer-left p{
+    margin:auto;
+  }
+
+  .social-icons{
+    justify-content:center;
+  }
+
+  /* QUICK LINKS */
+  .footer-links{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;   /* center block */
+  }
+
+  .footer-links h3{
+    text-align:center;
+    width:100%;
+  }
+
+  .footer-links a{
+    width:100%;
+    max-width:220px;      /* keeps good width */
+    text-align:start;     /* TEXT LEFT */
+    margin:4px 0;
+    padding-left:0;
+    margin-left: 130px;
+  }
+
+  /* Contact section */
+  .footer-contact{
+    text-align:center;
+  }
+
+  /* Subscribe input responsiveness */
+  .subscribe-box{
+    flex-direction:column;
+    max-width:none;
+  }
+  .subscribe-box input{
+    width:100%;
+    border-radius:6px;
+    margin-bottom:10px;
+  }
+  .subscribe-box button{
+    width:100%;
+    border-radius:6px;
+  }
+}
+
+</style>
+
+<footer>
+  <div class="footer-container">
+
+    <!-- LEFT -->
+    <div class="footer-left">
+      <img src="Screenshot (7) (1) (1).webp" alt="Company Logo">
+      <p>Our digital banking platform provides customers with 24/7 access to essential financial services...</p>
+
+      <div class="social-icons">
+        <a href="404.html"><img src="facebook.webp" alt="Facebook"></a>
+        <a href="404.html"><img src="twitter-logo.webp" alt="Twitter"></a>
+        <a href="404.html"><img src="linkedin.webp" alt="LinkedIn"></a>
+        <a href="404.html"><img src="instagram.webp" alt="Instagram"></a>
+      </div>
+    </div>
+
+    <!-- CENTER -->
+    <div class="footer-links">
+      <h3>Quick Links</h3>
+      <a href="index.html">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="account.html">Account</a>
+      <a href="loans.html">Loans</a>
+      <a href="investment.html">Investment</a>
+      <a href="cards.html">Cards</a>
+      <a href="carreer.html">Career</a>
+      <a href="signup.html">Signup</a>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="footer-contact">
+      <h3>Contact Us</h3>
+      <p>📍 Bengaluru, Karnataka</p>
+      <p>📞 +91 98765 43210</p>
+      <p>✉ support@stacklybank.com</p>
+
+      <form action="404.html" method="get" class="subscribe-box">
+        <input type="email" name="email" placeholder="Enter your email" required>
+        <button type="submit">Join</button>
+      </form>
+    </div>
+
+  </div>
+
+  <p class="footer-bottom">© 2025 Stackly Bank. All Rights Reserved.</p>
+</footer>
+
+<!-- ================= FOOTER END ================= -->

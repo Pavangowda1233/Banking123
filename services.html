@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced Neon Navbar</title>
+
+<style>
+
+/* RESET */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Poppins",sans-serif;
+}
+
+/* BEAUTIFUL BODY */
+body{
+  background: linear-gradient(135deg, #a8c0ff, #3f2b96);
+  height:150vh;
+  padding-top:90px;
+
+}
+
+/* FULL FIXED NAV */
+nav{
+  position:fixed;
+  top:0;
+  left:0;                   /* FIXED LEFT */
+  width:100%;
+  background:linear-gradient(135deg, #6f00ff, #0097ff);
+  backdrop-filter:blur(20px);
+  padding:16px 28px;        /* REDUCED TO FIT DESKTOP */
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  box-shadow:0 5px 25px rgba(0,0,0,0.35);
+  z-index:2000;
+}
+
+/* LOGO */
+.logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.logo img{
+  width:130px;
+  height:auto;
+}
+
+/* NAV LINKS — DESKTOP */
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:30px;
+  margin-left:auto;        /* CLEAN ALIGNMENT FIX */
+}
+
+/* NAV LINK STYLE */
+.nav-links a, .dropdown-btn{
+  font-size:16px;
+  font-weight:600;
+  color:white;
+  text-decoration:none;
+  padding:10px 14px;
+  border-radius:8px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+/* HOVER GLOW */
+.nav-links a:hover, .dropdown-btn:hover{
+  background:rgba(255,255,255,0.25);
+  box-shadow:0 0 15px rgba(255,255,255,0.7);
+  transform:translateY(-3px);
+}
+
+/* DROPDOWN */
+.dropdown{
+  position:relative;
+}
+
+.dropdown-content{
+  background:white;
+  position:absolute;
+  top:50px;
+  left:0;
+  width:160px;
+  border-radius:12px;
+  box-shadow:0 8px 25px rgba(0,0,0,0.25);
+  display:none;
+  flex-direction:column;
+  overflow:hidden;
+}
+
+.dropdown-content a{
+  padding:12px 20px;
+  font-size:15px;
+  font-weight:500;
+  color:#333;
+}
+
+.dropdown-content a:hover{
+  background:#ececff;
+  color:#4b00ff;
+}
+
+/* HAMBURGER */
+.hamburger{
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  cursor:pointer;
+}
+.hamburger span{
+  width:28px;
+  height:3px;
+  background:white;
+  border-radius:5px;
+  transition:0.4s;
+}
+
+/* MOBILE VIEW */
+@media(max-width:850px){
+
+  .hamburger{ display:flex; }
+
+  /* mobile menu */
+  .nav-links{
+    position:fixed;
+    top:90px;
+    right:-100%;
+    width:260px;
+    height:100vh;
+    background:linear-gradient(135deg, #3f2b96, #6f00ff);
+    flex-direction:column;
+    padding-top:50px;
+    gap:25px;
+    box-shadow:-10px 0 25px rgba(0,0,0,0.3);
+    transition:0.5s;
+  }
+
+  .nav-links.show{
+    right:0;
+  }
+
+  .dropdown-content{
+    position:relative;
+    top:0;
+    width:100%;
+    box-shadow:none;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+
+  <!-- LOGO -->
+  <div class="logo">
+    <img src="Screenshot (7) (1) (1).webp">
+  </div>
+
+  <!-- HAMBURGER -->
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- NAV LINKS -->
+   <div class="nav-links" id="menu">
+
+    <div class="dropdown">
+      <div class="dropdown-btn" onclick="toggleDropdown()">Home ▾</div>
+      <div class="dropdown-content" id="dropMenu">
+        <a href="index.html">Home 1</a>
+        <a href="Home2.html">Home 2</a>
+      </div>
+    </div>
+
+    <a href="netbanking.html">Netbanking</a>
+     <a href="services.html">Services</a>
+    <a href="upi.html">UPI</a>
+    <a href="about.html">About</a>
+    <a href="blog.html">Blog</a>
+     <a href="contact.html">Contact</a>
+      <a href="signup1.html">signup</a>
+  </div>
+</nav>
+
+
+
+<script>
+/* MOBILE MENU OPEN/CLOSE */
+function toggleMenu(){
+  document.getElementById("menu").classList.toggle("show");
+}
+
+/* DROPDOWN CLICK OPEN/CLOSE */
+function toggleDropdown(){
+  const drop = document.getElementById("dropMenu");
+  drop.style.display = (drop.style.display === "flex") ? "none" : "flex";
+}
+</script>
+
+<style>
+/* RESET */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Poppins",sans-serif;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:radial-gradient(circle at top,#0b1024,#020413 55%);
+  color:#e9edff;
+  padding:18px;
+  overflow-x:hidden;
+  margin-top: 80px;
+}
+
+/* WRAPPER */
+.wrapper{
+  max-width:1150px;
+  margin:0 auto 40px;
+}
+
+/* HERO */
+.hero{
+  background:linear-gradient(135deg,#2563eb,#00c2ff);
+  border-radius:26px;
+  padding:28px 22px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:20px;
+  align-items:center;
+  box-shadow:0 22px 55px rgba(0,0,0,0.7);
+  position:relative;
+  overflow:hidden;
+}
+
+.hero::before,
+.hero::after{
+  content:"";
+  position:absolute;
+  width:220px;
+  height:220px;
+  border-radius:50%;
+  background:radial-gradient(circle,#ffffff80,#ffffff00);
+  filter:blur(4px);
+}
+.hero::before{
+  top:-90px;
+  left:-40px;
+}
+.hero::after{
+  bottom:-80px;
+  right:-30px;
+}
+
+.hero-text{
+  flex:1 1 260px;
+  position:relative;
+  z-index:2;
+}
+
+.hero-text h1{
+  font-size:30px;
+  font-weight:700;
+  margin-bottom:6px;
+}
+
+.hero-text p{
+  font-size:14px;
+  opacity:.95;
+}
+
+.hero-badges{
+  margin-top:10px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.hero-badge{
+  font-size:11px;
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(2,6,23,.7);
+  border:1px solid rgba(191,219,254,.7);
+}
+
+.hero-img{
+  flex:1 1 220px;
+  text-align:right;
+  position:relative;
+  z-index:2;
+}
+.hero-img img{
+  width:100%;
+  max-width:280px;
+  border-radius:20px;
+  box-shadow:0 20px 45px rgba(0,0,0,0.8);
+  animation:float 5s ease-in-out infinite;
+}
+
+/* FLOAT ANIMATION */
+@keyframes float{
+  0%{transform:translateY(0);}
+  50%{transform:translateY(-10px);}
+  100%{transform:translateY(0);}
+}
+
+/* SECTION HEADER */
+.section-head{
+  margin-top:26px;
+  margin-bottom:10px;
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.section-title{
+  font-size:22px;
+  font-weight:600;
+}
+.section-sub{
+  font-size:13px;
+  color:#c3cffb;
+  max-width:520px;
+}
+
+/* SERVICE GRID */
+.service-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px;
+}
+@media(max-width:980px){
+  .service-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+@media(max-width:720px){
+  .service-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+/* SERVICE CARD */
+.service-card{
+  background:linear-gradient(145deg,rgba(23,31,65,0.98),rgba(11,15,40,0.98));
+  border-radius:20px;
+  padding:16px 15px 14px;
+  border:1px solid rgba(99,102,241,0.4);
+  box-shadow:0 16px 40px rgba(0,0,0,0.85);
+  position:relative;
+  overflow:hidden;
+  transition:.25s ease;
+}
+.service-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 24px 55px rgba(0,0,0,0.9);
+  border-color:#60a5fa;
+}
+
+.service-icon{
+  width:34px;
+  height:34px;
+  border-radius:14px;
+  background:radial-gradient(circle,#38bdf8,#1d4ed8);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:18px;
+  margin-bottom:8px;
+}
+
+.service-title{
+  font-size:16px;
+  font-weight:600;
+}
+
+.service-tagline{
+  font-size:12px;
+  color:#b4c0ff;
+  margin:2px 0 6px;
+}
+
+.service-card p{
+  font-size:12px;
+  line-height:1.6;
+  color:#d6defd;
+}
+
+/* BULLET LIST INSIDE CARD */
+.service-card ul{
+  margin-top:6px;
+  margin-left:16px;
+  font-size:12px;
+}
+.service-card ul li{
+  margin-bottom:4px;
+}
+
+/* MINI TAGS INSIDE CARD */
+.service-tags{
+  margin-top:8px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:5px;
+}
+.service-tag{
+  font-size:10px;
+  padding:4px 8px;
+  border-radius:999px;
+  background:#020617;
+  border:1px solid #3b82f6;
+}
+
+/* DETAIL STRIP */
+.detail-strip{
+  margin-top:26px;
+  background:linear-gradient(135deg,#111827,#020617);
+  border-radius:18px;
+  padding:14px 14px;
+  border:1px solid #1f2937;
+  box-shadow:0 15px 35px rgba(0,0,0,0.85);
+  font-size:12px;
+  color:#d1d5ff;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  justify-content:space-between;
+}
+.detail-strip strong{
+  color:#93c5fd;
+}
+
+/* RESPONSIVE HERO */
+@media(max-width:720px){
+  body{padding:14px;}
+  .hero-text h1{font-size:24px;}
+  .hero-img{text-align:left;}
+}
+</style>
+</head>
+
+<body>
+<div class="wrapper">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Stackly Bank – Complete Banking Services</h1>
+      <p>
+        One digital bank for everything: open accounts, manage cards, apply for loans, invest,
+        pay bills and control your money with a single secure NetBanking and mobile experience.
+      </p>
+      <div class="hero-badges">
+    
+      </div>
+    </div>
+    <div class="hero-img">
+      <img src="pav10.webp" alt="Stackly Bank Services">
+    </div>
+  </section>
+
+  <!-- MAIN SERVICES TITLE -->
+  <div class="section-head">
+    <div class="section-title">Core Banking Services</div>
+    <div class="section-sub">
+      These are the main services Stackly Bank offers. Every service is available through branch,
+      NetBanking and mobile app – designed to be simple, transparent and secure.
+    </div>
+  </div>
+
+  <!-- SERVICE GRID -->
+  <section class="service-grid">
+
+    <!-- 1. ACCOUNTS -->
+    <article class="service-card">
+      <div class="service-icon">🏦</div>
+      <div class="service-title">Accounts & Deposits</div>
+      <div class="service-tagline">Open, manage and grow your money.</div>
+      <p>
+        Stackly offers savings, salary and current accounts with digital onboarding,
+        high uptime and real-time access to your funds.
+      </p>
+      <ul>
+        <li><strong>Savings Account:</strong> Daily banking with interest on balance.</li>
+        <li><strong>Salary Account:</strong> Seamless salary credit & zero-balance features.</li>
+        <li><strong>Current Account:</strong> High-volume transactions for shops and businesses.</li>
+        <li><strong>Deposits:</strong> Fixed and recurring deposits for safe growth.</li>
+      </ul>
+      <div class="service-tags">
+      
+      </div>
+    </article>
+
+    <!-- 2. PAYMENTS -->
+    <article class="service-card">
+      <div class="service-icon">💸</div>
+      <div class="service-title">Payments & Transfers</div>
+      <div class="service-tagline">Move money in seconds, 24×7.</div>
+      <p>
+        From UPI to NEFT and RTGS, Stackly handles all your transfers with speed and security.
+        Pay anyone, anywhere, straight from your phone or laptop.
+      </p>
+      <ul>
+        <li>UPI & QR payments for daily transfers and merchant payments.</li>
+        <li>IMPS for instant bank-to-bank transfers anytime.</li>
+        <li>NEFT / RTGS for higher-value domestic transfers.</li>
+        <li>IMPS for instant bank-to-bank transfers anytime.</li>
+        <li>Scheduled and recurring payments for rent, fees and SIPs.</li>
+      </ul>
+      <div class="service-tags">
+       
+      </div>
+    </article>
+
+    <!-- 3. CARDS -->
+    <article class="service-card">
+      <div class="service-icon">💳</div>
+      <div class="service-title">Debit, Credit & Virtual Cards</div>
+      <div class="service-tagline">Smart cards with full digital control.</div>
+      <p>
+        Stackly cards are designed for both security and rewards. Control everything from limits
+        to lock/unlock directly through NetBanking and app.
+      </p>
+      <ul>
+        <li>Debit cards linked to your savings or current accounts.</li>
+        <li>Credit cards with rewards, cashback and EMI conversion options.</li>
+        <li>Virtual cards for secure online & subscription payments.</li>
+        <li>Instant blocking & international usage toggle.</li>
+      </ul>
+      <div class="service-tags">
+       
+      </div>
+    </article>
+
+    <!-- 4. LOANS -->
+    <article class="service-card">
+      <div class="service-icon">📄</div>
+      <div class="service-title">Loans & Credit Solutions</div>
+      <div class="service-tagline">Finance your goals, repay with ease.</div>
+      <p>
+        Stackly provides a range of loan services with transparent EMIs and flexible repayment,
+        supported by an easy digital application journey.
+      </p>
+      <ul>
+        <li>Personal loans for education, travel, medical and emergencies.</li>
+        <li>Home and vehicle loans with long-term tenures and competitive rates.</li>
+        <li>Business and working capital loans for SMEs and startups.</li>
+        <li>Digital loan dashboard to track EMIs, interest and outstanding balance.</li>
+      </ul>
+      <div class="service-tags">
+       
+      </div>
+    </article>
+
+    <!-- 5. INVESTMENTS -->
+    <article class="service-card">
+      <div class="service-icon">📈</div>
+      <div class="service-title">Investments & Wealth</div>
+      <div class="service-tagline">Make your money work harder.</div>
+      <p>
+        Beyond deposits, Stackly connects you with curated investment options, helping you grow
+        wealth based on your risk profile and goals.
+      </p>
+      <ul>
+        <li>Mutual funds and SIP integration via partners.</li>
+        <li>Goal-based investing for education, retirement and big purchases.</li>
+        <li>Gold and other safe-haven instruments where supported.</li>
+        <li>IMPS for instant bank-to-bank transfers anytime.</li>
+        <li>Portfolio view inside NetBanking for quick tracking.</li>
+      </ul>
+      <div class="service-tags">
+       <
+      </div>
+    </article>
+
+    <!-- 6. DIGITAL BANKING -->
+    <article class="service-card">
+      <div class="service-icon">📱</div>
+      <div class="service-title">Digital & NetBanking Services</div>
+      <div class="service-tagline">Your bank inside your phone.</div>
+      <p>
+        Full-featured NetBanking and mobile apps provide a complete banking experience without
+        visiting a branch – from onboarding to closure.
+      </p>
+      <ul>
+        <li>View balances, transactions and account statements in real time.</li>
+        <li>Manage cards, loans, deposits and UPI in one dashboard.</li>
+        <li>Profile updates, nominee changes and e-KYC updates.</li>
+        <li>Login via password + OTP, device binding and secure session controls.</li>
+      </ul>
+      <div class="service-tags">
+      
+      </div>
+    </article>
+
+    <!-- 7. BILL PAY & RECHARGE -->
+    <article class="service-card">
+      <div class="service-icon">🧾</div>
+      <div class="service-title">Bill Pay & Recharges</div>
+      <div class="service-tagline">One hub for all your monthly bills.</div>
+      <p>
+        Stackly’s bill pay system centralizes all your recurring payments, helping you stay
+        organized with reminders and AutoPay options.
+      </p>
+      <ul>
+        <li>Electricity, water, gas, broadband and postpaid mobile.</li>
+        <li>DTH, FASTag, OTT subscriptions and more.</li>
+        <li>Configure AutoPay from account, card or UPI.</li>
+        <li>IMPS for instant bank-to-bank transfers anytime.</li>
+        <li>Download digital receipts for all payments.</li>
+      </ul>
+      <div class="service-tags">
+       
+      </div>
+    </article>
+
+    <!-- 8. SECURITY & SUPPORT -->
+    <article class="service-card">
+      <div class="service-icon">🛡️</div>
+      <div class="service-title">Security & Customer Support</div>
+      <div class="service-tagline">Protected banking with human help.</div>
+      <p>
+        Stackly treats security and support as services, not features. Dedicated teams and
+        technology ensure your banking remains safe and guided.
+      </p>
+      <ul>
+        <li>2-factor authentication and encrypted sessions for every login.</li>
+        <li>24×7 monitoring to detect unusual transactions and logins.</li>
+        <li>Instant card and account blocking via app or helpline.</li>
+        <li>Support via chat, call, email and ticket system.</li>
+      </ul>
+      <div class="service-tags">
+       
+    </article>
+
+  </section>
+
+  <!-- DETAIL STRIP -->
+  <div class="detail-strip">
+    <div>
+      <strong>How to access Stackly Bank services?</strong><br>
+      Open an account → activate NetBanking → link mobile number → start using UPI, cards,
+      deposits and investments from a single login.
+    </div>
+    <div>
+      <strong>Who can use it?</strong><br>
+      Individual customers, salary holders, small business owners and startups can all use
+      Stackly digital services with simple documentation.
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
+
+<style>
+/* ================= FOOTER START ================= */
+
+footer{
+ background: linear-gradient(180deg, #1e1e3f, #342e6a, #4e2b8c);
+
+
+  color:#fff;
+  padding:70px 6%;
+  margin-top:80px;
+  position:relative;
+  overflow:hidden;
+  font-family:"Poppins",sans-serif;
+}
+
+/* Soft glow */
+footer::before{
+  content:"";
+  position:absolute;
+  top:-120px;
+  left:0;
+  width:120%;
+  height:220px;
+ 
+}
+
+
+/* GRID LAYOUT FIXED */
+.footer-container{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap:50px;
+  position:relative;
+  z-index:2;
+}
+
+/* LEFT */
+.footer-left img{
+  height:58px;
+  margin-bottom:12px;
+  object-fit:contain;
+}
+
+.footer-left p{
+  opacity:0.85;
+  margin:12px 0 18px;
+  line-height:1.6;
+  font-size:14px;
+  max-width:280px;
+}
+
+/* SOCIAL ICONS */
+.social-icons{
+  display:flex;
+  gap:14px;
+  margin-top:12px;
+}
+.social-icons a{
+  height:42px;width:42px;
+  border-radius:50%;
+  background:#ffffff20;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  transition:.3s;
+}
+.social-icons a:hover{
+  background:#00eaff;
+  transform:translateY(-6px) scale(1.1);
+}
+.social-icons img{
+  height:20px;width:20px;
+}
+
+/* CENTER LINKS */
+.footer-links h3,
+.footer-contact h3{
+  margin-bottom:16px;
+  font-size:22px;
+  color:#00eaff;
+}
+
+.footer-links a{
+  display:block;
+  text-decoration:none;
+  color:#cbd5e1;
+  margin:6px 0;
+  font-size:15px;
+  transition:.3s;
+}
+.footer-links a:hover{
+  transform:translateX(6px);
+  color:#00eaff;
+}
+
+/* RIGHT CONTACT */
+.footer-contact p{
+  margin:6px 0;
+  opacity:.9;
+  font-size:15px;
+}
+
+/* SUBSCRIBE */
+.subscribe-box{
+  margin-top:16px;
+  display:flex;
+  width:100%;
+  max-width:320px;
+}
+.subscribe-box input{
+  flex:1;
+  padding:12px 14px;
+  background:#ffffff12;
+  border:none;
+  border-radius:6px 0 0 6px;
+  color:white;
+  outline:none;
+}
+.subscribe-box button{
+  padding:12px 20px;
+  background:#00eaff;
+  border:none;
+  color:#001;
+  font-weight:700;
+  border-radius:0 6px 6px 0;
+  cursor:pointer;
+}
+
+/* BOTTOM COPYRIGHT */
+.footer-bottom{
+  text-align:center;
+  margin-top:40px;
+  padding-top:18px;
+  border-top:1px solid #1e293b;
+  opacity:.8;
+  font-size:14px;
+}
+
+/* MOBILE VIEW FIX */
+/* MOBILE VIEW FIX */
+@media(max-width:900px){
+  
+  .footer-container{
+    grid-template-columns:1fr;
+    gap:45px;
+    text-align:center;
+  }
+
+  /* Left section */
+  .footer-left p{
+    margin:auto;
+  }
+
+  .social-icons{
+    justify-content:center;
+  }
+
+  /* QUICK LINKS */
+  .footer-links{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;   /* center block */
+  }
+
+  .footer-links h3{
+    text-align:center;
+    width:100%;
+  }
+
+  .footer-links a{
+    width:100%;
+    max-width:220px;      /* keeps good width */
+    text-align:start;     /* TEXT LEFT */
+    margin:4px 0;
+    padding-left:0;
+    margin-left: 130px;
+  }
+
+  /* Contact section */
+  .footer-contact{
+    text-align:center;
+  }
+
+  /* Subscribe input responsiveness */
+  .subscribe-box{
+    flex-direction:column;
+    max-width:none;
+  }
+  .subscribe-box input{
+    width:100%;
+    border-radius:6px;
+    margin-bottom:10px;
+  }
+  .subscribe-box button{
+    width:100%;
+    border-radius:6px;
+  }
+}
+
+</style>
+
+<footer>
+  <div class="footer-container">
+
+    <!-- LEFT -->
+    <div class="footer-left">
+      <img src="Screenshot (7) (1) (1).webp" alt="Company Logo">
+      <p>Our digital banking platform provides customers with 24/7 access to essential financial services...</p>
+
+      <div class="social-icons">
+        <a href="4041.html"><img src="facebook.webp" alt="Facebook"></a>
+        <a href="4041.html"><img src="twitter-logo.webp" alt="Twitter"></a>
+        <a href="4041.html"><img src="linkedin.webp" alt="LinkedIn"></a>
+        <a href="4041.html"><img src="instagram.webp" alt="Instagram"></a>
+      </div>
+    </div>
+
+    <!-- CENTER -->
+    <div class="footer-links">
+      <h3>Quick Links</h3>
+      <a href="Home2.html">Home</a>
+      <a href="netbanking.html">Netbanking</a>
+     <a href="services.html">Services</a>
+    <a href="upi.html">UPI</a>
+    <a href="about.html">About</a>
+    <a href="blog.html">Blog</a>
+     <a href="contact.html">Contact</a>
+      <a href="signup1.html">Signup</a>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="footer-contact">
+      <h3>Contact Us</h3>
+      <p>📍 Bengaluru, Karnataka</p>
+      <p>📞 +91 98765 43210</p>
+      <p>✉ support@stacklybank.com</p>
+
+      <form action="4041.html" method="get" class="subscribe-box">
+        <input type="email" name="email" placeholder="Enter your email" required>
+        <button type="submit">Join</button>
+      </form>
+    </div>
+
+  </div>
+
+  <p class="footer-bottom">© 2025 Stackly Bank. All Rights Reserved.</p>
+</footer>
+
+<!-- ================= FOOTER END ================= -->

@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced Neon Navbar</title>
+
+<style>
+
+/* RESET */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Poppins",sans-serif;
+}
+
+/* BEAUTIFUL BODY */
+body{
+  background: linear-gradient(135deg, #a8c0ff, #3f2b96);
+  height:150vh;
+  padding-top:90px;
+
+}
+
+/* FULL FIXED NAV */
+nav{
+  position:fixed;
+  top:0;
+  left:0;                   /* FIXED LEFT */
+  width:100%;
+  background:linear-gradient(135deg, #6f00ff, #0097ff);
+  backdrop-filter:blur(20px);
+  padding:16px 28px;        /* REDUCED TO FIT DESKTOP */
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  box-shadow:0 5px 25px rgba(0,0,0,0.35);
+  z-index:2000;
+}
+
+/* LOGO */
+.logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.logo img{
+  width:130px;
+  height:auto;
+}
+
+/* NAV LINKS — DESKTOP */
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:30px;
+  margin-left:auto;        /* CLEAN ALIGNMENT FIX */
+}
+
+/* NAV LINK STYLE */
+.nav-links a, .dropdown-btn{
+  font-size:16px;
+  font-weight:600;
+  color:white;
+  text-decoration:none;
+  padding:10px 14px;
+  border-radius:8px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+/* HOVER GLOW */
+.nav-links a:hover, .dropdown-btn:hover{
+  background:rgba(255,255,255,0.25);
+  box-shadow:0 0 15px rgba(255,255,255,0.7);
+  transform:translateY(-3px);
+}
+
+/* DROPDOWN */
+.dropdown{
+  position:relative;
+}
+
+.dropdown-content{
+  background:white;
+  position:absolute;
+  top:50px;
+  left:0;
+  width:160px;
+  border-radius:12px;
+  box-shadow:0 8px 25px rgba(0,0,0,0.25);
+  display:none;
+  flex-direction:column;
+  overflow:hidden;
+}
+
+.dropdown-content a{
+  padding:12px 20px;
+  font-size:15px;
+  font-weight:500;
+  color:#333;
+}
+
+.dropdown-content a:hover{
+  background:#ececff;
+  color:#4b00ff;
+}
+
+/* HAMBURGER */
+.hamburger{
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  cursor:pointer;
+}
+.hamburger span{
+  width:28px;
+  height:3px;
+  background:white;
+  border-radius:5px;
+  transition:0.4s;
+}
+
+/* MOBILE VIEW */
+@media(max-width:850px){
+
+  .hamburger{ display:flex; }
+
+  /* mobile menu */
+  .nav-links{
+    position:fixed;
+    top:90px;
+    right:-100%;
+    width:260px;
+    height:100vh;
+    background:linear-gradient(135deg, #3f2b96, #6f00ff);
+    flex-direction:column;
+    padding-top:50px;
+    gap:25px;
+    box-shadow:-10px 0 25px rgba(0,0,0,0.3);
+    transition:0.5s;
+  }
+
+  .nav-links.show{
+    right:0;
+  }
+
+  .dropdown-content{
+    position:relative;
+    top:0;
+    width:100%;
+    box-shadow:none;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+
+  <!-- LOGO -->
+  <div class="logo">
+    <img src="Screenshot (7) (1) (1).webp">
+  </div>
+
+  <!-- HAMBURGER -->
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- NAV LINKS -->
+   <div class="nav-links" id="menu">
+
+    <div class="dropdown">
+      <div class="dropdown-btn" onclick="toggleDropdown()">Home ▾</div>
+      <div class="dropdown-content" id="dropMenu">
+        <a href="index.html">Home 1</a>
+        <a href="Home2.html">Home 2</a>
+      </div>
+    </div>
+
+    <a href="netbanking.html">Netbanking</a>
+     <a href="services.html">Services</a>
+    <a href="upi.html">UPI</a>
+    <a href="about.html">About</a>
+    <a href="blog.html">Blog</a>
+     <a href="contact.html">Contact</a>
+      <a href="signup1.html">signup</a>
+  </div>
+</nav>
+
+
+
+<script>
+/* MOBILE MENU OPEN/CLOSE */
+function toggleMenu(){
+  document.getElementById("menu").classList.toggle("show");
+}
+
+/* DROPDOWN CLICK OPEN/CLOSE */
+function toggleDropdown(){
+  const drop = document.getElementById("dropMenu");
+  drop.style.display = (drop.style.display === "flex") ? "none" : "flex";
+}
+</script>
+
+<style>
+/* RESET */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Poppins",sans-serif;
+}
+
+body{
+  background:#0b0f1f;
+  color:#e7ecff;
+  overflow-x:hidden;
+  padding:16px;
+  margin-top: 80px;
+}
+
+.wrapper{
+  max-width:1180px;
+  margin:0 auto 60px;
+}
+
+/* HERO */
+.hero{
+  background:linear-gradient(135deg,#3b82f6,#06b6d4);
+  border-radius:28px;
+  padding:32px;
+  box-shadow:0 28px 55px rgba(0,0,0,0.78);
+  position:relative;
+  overflow:hidden;
+}
+
+.hero::before,
+.hero::after{
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  background:rgba(255,255,255,0.18);
+  filter:blur(8px);
+}
+
+.hero::before{
+  width:240px;
+  height:240px;
+  top:-70px;
+  left:-40px;
+}
+
+.hero::after{
+  width:300px;
+  height:300px;
+  bottom:-100px;
+  right:-50px;
+}
+
+.hero h1{
+  font-size:32px;
+  font-weight:700;
+  z-index:2;
+  position:relative;
+}
+.hero p{
+  font-size:15px;
+  margin-top:8px;
+  z-index:2;
+  position:relative;
+  opacity:.95;
+}
+
+/* BLOG GRID */
+.blog-grid{
+  margin-top:28px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+@media(max-width:900px){
+  .blog-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:600px){
+  .blog-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+/* BLOG CARD */
+.card{
+  background:linear-gradient(140deg,rgba(21,26,47,0.95),rgba(7,9,21,0.95));
+  border-radius:18px;
+  border:1px solid rgba(99,102,241,0.4);
+  overflow:hidden;
+  box-shadow:0 18px 35px rgba(0,0,0,0.85);
+  transition:.25s;
+}
+
+.card:hover{
+  transform:translateY(-6px);
+  border-color:#60a5fa;
+}
+
+.card img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+}
+
+.card-body{
+  padding:16px;
+}
+
+.card-title{
+  font-size:16px;
+  font-weight:600;
+  margin-bottom:6px;
+}
+
+.card-text{
+  font-size:13px;
+  line-height:1.6;
+  opacity:.85;
+}
+
+.blog-meta{
+  display:flex;
+  justify-content:space-between;
+  font-size:11px;
+  opacity:.7;
+  margin-top:10px;
+}
+
+/* READ BUTTON */
+.read-btn{
+  display:inline-block;
+  margin-top:12px;
+  padding:8px 14px;
+  font-size:12px;
+  color:#fff;
+  border-radius:999px;
+  background:linear-gradient(135deg,#2563eb,#00d4ff);
+  text-decoration:none;
+  transition:.3s;
+}
+
+.read-btn:hover{
+  opacity:0.85;
+}
+
+/* BLOG DETAILS BOX */
+.detail-box{
+  margin-top:45px;
+  background:linear-gradient(145deg,rgba(20,25,50,0.95),rgba(5,8,22,0.95));
+  padding:22px;
+  border-radius:22px;
+  border:1px solid rgba(99,102,241,0.35);
+  box-shadow:0 25px 55px rgba(0,0,0,0.88);
+}
+
+.detail-box h2{
+  font-size:22px;
+  font-weight:600;
+  margin-bottom:10px;
+}
+
+.detail-box p{
+  font-size:14px;
+  line-height:1.8;
+  opacity:.92;
+}
+
+.detail-img{
+  width:100%;
+  border-radius:20px;
+  margin:18px 0;
+  box-shadow:0 20px 45px rgba(0,0,0,0.85);
+}
+</style>
+</head>
+
+<body>
+<div class="wrapper">
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Stackly Blog</h1>
+  <p>
+    Financial education, banking tips, digital payments, loan guides and the latest 
+    smart money ideas — all written by Stackly experts to help you grow financially.
+  </p>
+</section>
+
+<!-- BLOG GRID -->
+<div class="blog-grid">
+
+  <!-- CARD 1 -->
+  <div class="card">
+    <img src="nest.webp">
+    <div class="card-body">
+      <div class="card-title">What is Digital Banking?</div>
+      <div class="card-text">
+        Learn how modern digital banking works, and why Stackly Bank is leading India's 
+        secure digital finance ecosystem.
+      </div>
+      <div class="blog-meta">
+        <span>Finance</span>
+        <span>5 min read</span>
+      </div>
+      <a href="4041.html" class="read-btn">Read More</a>
+    </div>
+  </div>
+
+  <!-- CARD 2 -->
+  <div class="card">
+    <img src="pav11.webp">
+    <div class="card-body">
+      <div class="card-title">Understanding UPI Payments</div>
+      <div class="card-text">
+        UPI has changed the way India pays. Learn how it works, why it’s safe and how 
+        Stackly UPI protects every transaction.
+      </div>
+      <div class="blog-meta">
+        <span>Payments</span>
+        <span>4 min read</span>
+      </div>
+      <a href="4041.html" class="read-btn">Read More</a>
+    </div>
+  </div>
+
+  <!-- CARD 3 -->
+  <div class="card">
+    <img src="pav2.webp">
+    <div class="card-body">
+      <div class="card-title">Smart Savings Tips</div>
+      <div class="card-text">
+        Savings is not about cutting expenses — it's about creating systems that 
+        automatically grow your money the smart way.
+      </div>
+      <div class="blog-meta">
+        <span>Money Guide</span>
+        <span>6 min read</span>
+      </div>
+      <a href="4041.html" class="read-btn">Read More</a>
+    </div>
+  </div>
+
+  <!-- CARD 4 -->
+  <div class="card">
+    <img src="pav4.webp">
+    <div class="card-body">
+      <div class="card-title">How Loans Really Work</div>
+      <div class="card-text">
+        Before taking any loan, understand interest, EMI, tenure and hidden charges. 
+        Here’s everything explained simply.
+      </div>
+      <div class="blog-meta">
+        <span>Loans</span>
+        <span>7 min read</span>
+      </div>
+      <a href="4041.html" class="read-btn">Read More</a>
+    </div>
+  </div>
+
+  <!-- CARD 5 -->
+  <div class="card">
+    <img src="pav5.webp">
+    <div class="card-body">
+      <div class="card-title">Stackly Cards Explained</div>
+      <div class="card-text">
+        A deep look into Stackly credit, debit and virtual cards — limits, security, 
+        cashback and EMI features.
+      </div>
+      <div class="blog-meta">
+        <span>Cards</span>
+        <span>5 min read</span>
+      </div>
+      <a href="4041.html" class="read-btn">Read More</a>
+    </div>
+  </div>
+
+  <!-- CARD 6 -->
+  <div class="card">
+    <img src="pav6.webp">
+    <div class="card-body">
+      <div class="card-title">Cybersecurity in Banking</div>
+      <div class="card-text">
+        Learn how Stackly protects your accounts with AI fraud detection, encryption 
+        and multi-layer security.
+      </div>
+      <div class="blog-meta">
+        <span>Security</span>
+        <span>4 min read</span>
+      </div>
+      <a href="4041.html" class="read-btn">Read More</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- BLOG DETAIL SECTION -->
+<div class="detail-box">
+  <h2>Featured Article – The Future of Digital Banking</h2>
+  <img class="detail-img" src="pav7.webp">
+
+  <p>
+    Digital banking in India is transforming rapidly. Stackly Bank plays a major role by 
+    providing instant UPI, digital KYC, smart cards, AI-based fraud detection, wealth 
+    planning tools and zero-paper banking solutions.
+  </p>
+
+  <p>
+    In the future, banking will be fully personalized using artificial intelligence, 
+    voice-based banking, biometric authentication and blockchain-secured payments. 
+    Stackly Bank is already building next-gen financial tools for smarter money 
+    management and complete financial freedom.
+  </p>
+</div>
+
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* RESET */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Poppins",sans-serif;
+}
+
+body{
+  background:#0b0f1f;
+  color:#e7ecff;
+  overflow-x:hidden;
+  padding:16px;
+}
+
+.wrapper{
+  max-width:1180px;
+  margin:0 auto 60px;
+}
+
+/* HERO */
+.hero{
+  background:linear-gradient(135deg,#3b82f6,#06b6d4);
+  border-radius:28px;
+  padding:32px;
+  box-shadow:0 28px 55px rgba(0,0,0,0.78);
+  position:relative;
+  overflow:hidden;
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  width:240px;
+  height:240px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.18);
+  top:-60px;
+  left:-40px;
+  filter:blur(8px);
+}
+.hero::after{
+  content:"";
+  position:absolute;
+  width:300px;
+  height:300px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.12);
+  bottom:-100px;
+  right:-50px;
+  filter:blur(8px);
+}
+
+.hero h1{
+  font-size:32px;
+  font-weight:700;
+}
+.hero p{
+  font-size:15px;
+  margin-top:8px;
+  opacity:.95;
+}
+
+/* BLOG GRID */
+.blog-grid{
+  margin-top:28px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+@media(max-width:900px){
+  .blog-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:600px){
+  .blog-grid{grid-template-columns:1fr;}
+}
+
+/* BLOG CARD */
+.card{
+  background:linear-gradient(140deg,rgba(21,26,47,0.95),rgba(7,9,21,0.95));
+  border-radius:18px;
+  border:1px solid rgba(99,102,241,0.4);
+  overflow:hidden;
+  box-shadow:0 18px 35px rgba(0,0,0,0.85);
+  transition:.25s;
+}
+.card:hover{
+  transform:translateY(-6px);
+  border-color:#60a5fa;
+}
+.card img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+}
+.card-body{
+  padding:16px;
+}
+.card-title{
+  font-size:16px;
+  font-weight:600;
+  margin-bottom:6px;
+}
+.card-text{
+  font-size:13px;
+  line-height:1.6;
+  opacity:.85;
+}
+.blog-meta{
+  display:flex;
+  justify-content:space-between;
+  font-size:11px;
+  opacity:.7;
+  margin-top:10px;
+}
+.read-btn{
+  display:inline-block;
+  margin-top:12px;
+  padding:8px 14px;
+  font-size:12px;
+  color:#fff;
+  border-radius:999px;
+  background:linear-gradient(135deg,#2563eb,#00d4ff);
+  text-decoration:none;
+}
+
+/* FEATURED ARTICLE */
+.detail-box{
+  margin-top:45px;
+  background:linear-gradient(145deg,rgba(20,25,50,0.95),rgba(5,8,22,0.95));
+  padding:22px;
+  border-radius:22px;
+  border:1px solid rgba(99,102,241,0.35);
+  box-shadow:0 25px 55px rgba(0,0,0,0.88);
+}
+.detail-box h2{
+  font-size:22px;
+  font-weight:600;
+  margin-bottom:10px;
+}
+.detail-box p{
+  font-size:14px;
+  line-height:1.8;
+  opacity:.92;
+}
+.detail-img{
+  width:80%;
+  border-radius:20px;
+  margin:18px 0;
+  box-shadow:0 20px 45px rgba(0,0,0,0.85);
+}
+
+/* TESTIMONIALS */
+.section-head{
+  margin-top:50px;
+}
+.section-head h2{
+  font-size:24px;
+  font-weight:600;
+}
+
+.testimonial-grid{
+  margin-top:20px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+@media(max-width:900px){
+  .testimonial-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:600px){
+  .testimonial-grid{grid-template-columns:1fr;}
+}
+
+.t-card{
+  background:linear-gradient(145deg,rgba(23,25,50,0.95),rgba(10,12,30,0.95));
+  padding:18px;
+  border-radius:18px;
+  border:1px solid rgba(99,102,241,0.3);
+  box-shadow:0 16px 45px rgba(0,0,0,0.85);
+}
+.t-card p{
+  font-size:13px;
+  line-height:1.7;
+}
+.t-user{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-top:12px;
+}
+.t-user img{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  object-fit:cover;
+  border:2px solid #60a5fa;
+}
+.t-user span{
+  font-size:13px;
+  font-weight:500;
+}
+
+/* FAQ */
+.faq-box{
+  margin-top:28px;
+}
+.faq{
+  background:#0e122b;
+  border:1px solid #3340a3;
+  margin-bottom:12px;
+  padding:14px;
+  border-radius:14px;
+}
+.faq h4{
+  font-size:14px;
+  font-weight:600;
+}
+.faq p{
+  font-size:13px;
+  opacity:.85;
+  margin-top:6px;
+  line-height:1.7;
+}
+</style>
+</head>
+
+<body>
+<div class="wrapper">
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Stackly Blog</h1>
+  <p>
+    Explore smart financial tips, digital banking guides, UPI security, investment ideas,
+    loan knowledge and the future of modern online banking.
+  </p>
+</section>
+
+<!-- BLOG GRID -->
+<div class="blog-grid">
+  <div class="card">
+    <img src="upi.webp">
+    <div class="card-body">
+      <div class="card-title">How UPI Became India’s No.1 Payment</div>
+      <div class="card-text">Understand the journey of UPI & how Stackly improves speed and safety.</div>
+      <div class="blog-meta"><span>UPI</span> <span>5 min read</span></div>
+      <a href="4041.html" class="read-btn">Read More</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="pav3.webp">
+    <div class="card-body">
+      <div class="card-title">Future of AI in Banking</div>
+      <div class="card-text">AI-driven fraud detection, risk scoring and personal finance tools.</div>
+      <div class="blog-meta"><span>Tech</span> <span>6 min read</span></div>
+      <a href="4041.html" class="read-btn">Read More</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="pav2.webp">
+    <div class="card-body">
+      <div class="card-title">How to Save Money Smartly</div>
+      <div class="card-text">Easy saving techniques with Stackly smart budgeting tools.</div>
+      <div class="blog-meta"><span>Money</span> <span>4 min read</span></div>
+      <a href="4041.html" class="read-btn">Read More</a>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURED ARTICLE -->
+<div class="detail-box">
+  <h2>Featured: Digital Banking Revolution</h2>
+  
+
+  <p>
+    Digital banking is transforming India rapidly. With UPI growth, online lending,
+    AI credit scoring and fully digital KYC, Stackly Bank gives customers total freedom
+    from paperwork and branch visits.
+  </p>
+
+  <p>
+    The future includes voice banking, biometric payments and instant cross-border
+    digital transactions — all coming soon to Stackly.
+  </p>
+</div>
+
+<!-- TESTIMONIALS -->
+<div class="section-head">
+  <h2>What Our Users Say</h2>
+</div>
+
+<div class="testimonial-grid">
+
+  <div class="t-card">
+    <p>
+      “Stackly Bank made UPI payments extremely fast and smooth. I love the instant notifications 
+      and clean app design.”
+    </p>
+    <div class="t-user">
+      <img src="Hr.webp">
+      <span>Rahul Sharma</span>
+    </div>
+  </div>
+
+  <div class="t-card">
+    <p>
+      “Loans and EMI management are so easy on Stackly. The portal shows everything in a simple dashboard.”
+    </p>
+    <div class="t-user">
+      <img src="hrwomen.webp">
+      <span>Pooja Verma</span>
+    </div>
+  </div>
+
+  <div class="t-card">
+    <p>
+      “The security features are excellent. UPI PIN, device lock and fraud alerts give full peace of mind.”
+    </p>
+    <div class="t-user">
+      <img src="hr4webp.avif">
+      <span>Arun Kumar</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- FAQ -->
+<div class="section-head">
+  <h2>Frequently Asked Questions (FAQ)</h2>
+</div>
+
+<div class="faq-box">
+  <div class="faq">
+    <h4>1. Is Stackly Bank secure?</h4>
+    <p>Yes, Stackly uses 256-bit encryption, AI fraud detection and 2-factor authentication.</p>
+  </div>
+
+  <div class="faq">
+    <h4>2. Does Stackly support all UPI payments?</h4>
+    <p>Yes, UPI ID, QR, AutoPay, UPI Lite and merchant payments are all supported.</p>
+  </div>
+
+  <div class="faq">
+    <h4>3. Are there any charges on transfers?</h4>
+    <p>No. Stackly UPI & internal transfers are completely free.</p>
+  </div>
+
+  <div class="faq">
+    <h4>4. Can I manage my cards online?</h4>
+    <p>Absolutely. You can lock/unlock, change limits and enable international usage anytime.</p>
+  </div>
+
+  <div class="faq">
+    <h4>5. How do I get support?</h4>
+    <p>Chat support, email, ticket system and 24×7 helpline are available.</p>
+  </div>
+</div>
+
+</div>
+</body>
+</html>
+
+</div>
+</body>
+</html>
+
+<style>
+/* ================= FOOTER START ================= */
+
+footer{
+ background: linear-gradient(180deg, #1e1e3f, #342e6a, #4e2b8c);
+
+
+  color:#fff;
+  padding:70px 6%;
+  margin-top:80px;
+  position:relative;
+  overflow:hidden;
+  font-family:"Poppins",sans-serif;
+}
+
+/* Soft glow */
+footer::before{
+  content:"";
+  position:absolute;
+  top:-120px;
+  left:0;
+  width:120%;
+  height:220px;
+ 
+}
+
+
+/* GRID LAYOUT FIXED */
+.footer-container{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap:50px;
+  position:relative;
+  z-index:2;
+}
+
+/* LEFT */
+.footer-left img{
+  height:58px;
+  margin-bottom:12px;
+  object-fit:contain;
+}
+
+.footer-left p{
+  opacity:0.85;
+  margin:12px 0 18px;
+  line-height:1.6;
+  font-size:14px;
+  max-width:280px;
+}
+
+/* SOCIAL ICONS */
+.social-icons{
+  display:flex;
+  gap:14px;
+  margin-top:12px;
+}
+.social-icons a{
+  height:42px;width:42px;
+  border-radius:50%;
+  background:#ffffff20;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  transition:.3s;
+}
+.social-icons a:hover{
+  background:#00eaff;
+  transform:translateY(-6px) scale(1.1);
+}
+.social-icons img{
+  height:20px;width:20px;
+}
+
+/* CENTER LINKS */
+.footer-links h3,
+.footer-contact h3{
+  margin-bottom:16px;
+  font-size:22px;
+  color:#00eaff;
+}
+
+.footer-links a{
+  display:block;
+  text-decoration:none;
+  color:#cbd5e1;
+  margin:6px 0;
+  font-size:15px;
+  transition:.3s;
+}
+.footer-links a:hover{
+  transform:translateX(6px);
+  color:#00eaff;
+}
+
+/* RIGHT CONTACT */
+.footer-contact p{
+  margin:6px 0;
+  opacity:.9;
+  font-size:15px;
+}
+
+/* SUBSCRIBE */
+.subscribe-box{
+  margin-top:16px;
+  display:flex;
+  width:100%;
+  max-width:320px;
+}
+.subscribe-box input{
+  flex:1;
+  padding:12px 14px;
+  background:#ffffff12;
+  border:none;
+  border-radius:6px 0 0 6px;
+  color:white;
+  outline:none;
+}
+.subscribe-box button{
+  padding:12px 20px;
+  background:#00eaff;
+  border:none;
+  color:#001;
+  font-weight:700;
+  border-radius:0 6px 6px 0;
+  cursor:pointer;
+}
+
+/* BOTTOM COPYRIGHT */
+.footer-bottom{
+  text-align:center;
+  margin-top:40px;
+  padding-top:18px;
+  border-top:1px solid #1e293b;
+  opacity:.8;
+  font-size:14px;
+}
+
+/* MOBILE VIEW FIX */
+/* MOBILE VIEW FIX */
+@media(max-width:900px){
+  
+  .footer-container{
+    grid-template-columns:1fr;
+    gap:45px;
+    text-align:center;
+  }
+
+  /* Left section */
+  .footer-left p{
+    margin:auto;
+  }
+
+  .social-icons{
+    justify-content:center;
+  }
+
+  /* QUICK LINKS */
+  .footer-links{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;   /* center block */
+  }
+
+  .footer-links h3{
+    text-align:center;
+    width:100%;
+  }
+
+  .footer-links a{
+    width:100%;
+    max-width:220px;      /* keeps good width */
+    text-align:start;     /* TEXT LEFT */
+    margin:4px 0;
+    padding-left:0;
+    margin-left: 130px;
+  }
+
+  /* Contact section */
+  .footer-contact{
+    text-align:center;
+  }
+
+  /* Subscribe input responsiveness */
+  .subscribe-box{
+    flex-direction:column;
+    max-width:none;
+  }
+  .subscribe-box input{
+    width:100%;
+    border-radius:6px;
+    margin-bottom:10px;
+  }
+  .subscribe-box button{
+    width:100%;
+    border-radius:6px;
+  }
+}
+
+</style>
+
+<footer>
+  <div class="footer-container">
+
+    <!-- LEFT -->
+    <div class="footer-left">
+      <img src="Screenshot (7) (1) (1).webp" alt="Company Logo">
+      <p>Our digital banking platform provides customers with 24/7 access to essential financial services...</p>
+
+      <div class="social-icons">
+        <a href="4041.html"><img src="facebook.webp" alt="Facebook"></a>
+        <a href="4041.html"><img src="twitter-logo.webp" alt="Twitter"></a>
+        <a href="4041.html"><img src="linkedin.webp" alt="LinkedIn"></a>
+        <a href="4041.html"><img src="instagram.webp" alt="Instagram"></a>
+      </div>
+    </div>
+
+    <!-- CENTER -->
+    <div class="footer-links">
+      <h3>Quick Links</h3>
+      <a href="Home2.html">Home</a>
+      <a href="netbanking.html">Netbanking</a>
+     <a href="services.html">Services</a>
+    <a href="upi.html">UPI</a>
+    <a href="about.html">About</a>
+    <a href="blog.html">Blog</a>
+     <a href="contact.html">Contact</a>
+      <a href="signup1.html">Signup</a>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="footer-contact">
+      <h3>Contact Us</h3>
+      <p>📍 Bengaluru, Karnataka</p>
+      <p>📞 +91 98765 43210</p>
+      <p>✉ support@stacklybank.com</p>
+
+      <form action="4041.html" method="get" class="subscribe-box">
+        <input type="email" name="email" placeholder="Enter your email" required>
+        <button type="submit">Join</button>
+      </form>
+    </div>
+
+  </div>
+
+  <p class="footer-bottom">© 2025 Stackly Bank. All Rights Reserved.</p>
+</footer>
+
+<!-- ================= FOOTER END ================= -->

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced Neon Navbar</title>
+
+<style>
+
+/* RESET */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Poppins",sans-serif;
+}
+
+/* BEAUTIFUL BODY */
+body{
+  background: linear-gradient(135deg, #a8c0ff, #3f2b96);
+  height:150vh;
+  padding-top:90px;
+
+}
+
+/* FULL FIXED NAV */
+nav{
+  position:fixed;
+  top:0;
+  left:0;                   /* FIXED LEFT */
+  width:100%;
+  background:linear-gradient(135deg, #6f00ff, #0097ff);
+  backdrop-filter:blur(20px);
+  padding:16px 28px;        /* REDUCED TO FIT DESKTOP */
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  box-shadow:0 5px 25px rgba(0,0,0,0.35);
+  z-index:2000;
+}
+
+/* LOGO */
+.logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.logo img{
+  width:130px;
+  height:auto;
+}
+
+/* NAV LINKS — DESKTOP */
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:30px;
+  margin-left:auto;        /* CLEAN ALIGNMENT FIX */
+}
+
+/* NAV LINK STYLE */
+.nav-links a, .dropdown-btn{
+  font-size:16px;
+  font-weight:600;
+  color:white;
+  text-decoration:none;
+  padding:10px 14px;
+  border-radius:8px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+/* HOVER GLOW */
+.nav-links a:hover, .dropdown-btn:hover{
+  background:rgba(255,255,255,0.25);
+  box-shadow:0 0 15px rgba(255,255,255,0.7);
+  transform:translateY(-3px);
+}
+
+/* DROPDOWN */
+.dropdown{
+  position:relative;
+}
+
+.dropdown-content{
+  background:white;
+  position:absolute;
+  top:50px;
+  left:0;
+  width:160px;
+  border-radius:12px;
+  box-shadow:0 8px 25px rgba(0,0,0,0.25);
+  display:none;
+  flex-direction:column;
+  overflow:hidden;
+}
+
+.dropdown-content a{
+  padding:12px 20px;
+  font-size:15px;
+  font-weight:500;
+  color:#333;
+}
+
+.dropdown-content a:hover{
+  background:#ececff;
+  color:#4b00ff;
+}
+
+/* HAMBURGER */
+.hamburger{
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  cursor:pointer;
+}
+.hamburger span{
+  width:28px;
+  height:3px;
+  background:white;
+  border-radius:5px;
+  transition:0.4s;
+}
+
+/* MOBILE VIEW */
+@media(max-width:850px){
+
+  .hamburger{ display:flex; }
+
+  /* mobile menu */
+  .nav-links{
+    position:fixed;
+    top:90px;
+    right:-100%;
+    width:260px;
+    height:100vh;
+    background:linear-gradient(135deg, #3f2b96, #6f00ff);
+    flex-direction:column;
+    padding-top:50px;
+    gap:25px;
+    box-shadow:-10px 0 25px rgba(0,0,0,0.3);
+    transition:0.5s;
+  }
+
+  .nav-links.show{
+    right:0;
+  }
+
+  .dropdown-content{
+    position:relative;
+    top:0;
+    width:100%;
+    box-shadow:none;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+
+  <!-- LOGO -->
+  <div class="logo">
+    <img src="Screenshot (7) (1) (1).webp">
+  </div>
+
+  <!-- HAMBURGER -->
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- NAV LINKS -->
+   <div class="nav-links" id="menu">
+
+    <div class="dropdown">
+      <div class="dropdown-btn" onclick="toggleDropdown()">Home ▾</div>
+      <div class="dropdown-content" id="dropMenu">
+        <a href="index.html">Home 1</a>
+        <a href="Home2.html">Home 2</a>
+      </div>
+    </div>
+
+    <a href="netbanking.html">Netbanking</a>
+     <a href="services.html">Services</a>
+    <a href="upi.html">UPI</a>
+    <a href="about.html">About</a>
+    <a href="blog.html">Blog</a>
+     <a href="contact.html">Contact</a>
+      <a href="signup1.html">signup</a>
+  </div>
+</nav>
+
+
+
+<script>
+/* MOBILE MENU OPEN/CLOSE */
+function toggleMenu(){
+  document.getElementById("menu").classList.toggle("show");
+}
+
+/* DROPDOWN CLICK OPEN/CLOSE */
+function toggleDropdown(){
+  const drop = document.getElementById("dropMenu");
+  drop.style.display = (drop.style.display === "flex") ? "none" : "flex";
+}
+</script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif;}
+
+body{
+  background:#eef5ff;
+  padding:30px;
+  margin-top: 40px;
+}
+
+/* CARD */
+.card{
+  max-width:650px;
+  margin:auto;
+  background:#fff;
+  padding:30px;
+  border-radius:16px;
+  box-shadow:0 10px 40px rgba(0,0,0,0.1);
+}
+
+h1{
+  text-align:center;
+  font-size:24px;
+  margin-bottom:18px;
+  color:#2d8cff;
+}
+
+form{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px;
+}
+
+.full{grid-column:1 / -1;}
+
+label{font-size:14px;margin-bottom:4px;display:block;}
+
+input,textarea{
+  width:100%;
+  padding:10px;
+  border-radius:8px;
+  border:1px solid #ccc;
+  font-size:14px;
+}
+
+textarea{resize:vertical;height:80px;}
+
+button{
+  grid-column:1 / -1;
+  padding:12px;
+  border:none;
+  background:#2d8cff;
+  color:white;
+  border-radius:8px;
+  cursor:pointer;
+  font-size:16px;
+  font-weight:600;
+}
+
+button:hover{
+  background:#1e6cd8;
+}
+
+.success{
+  display:none;
+  margin-top:20px;
+  background:#d4ffe1;
+  padding:12px;
+  text-align:center;
+  border-radius:8px;
+  border:1px solid #00cc55;
+  font-size:16px;
+  color:#008833;
+}
+.signin-btn{
+  grid-column:1 / -1;
+  display:block;
+  text-align:center;
+  margin-top:10px;
+  padding:12px;
+  background:#fff;
+  border:2px solid #2d8cff;
+  color:#2d8cff;
+  font-weight:600;
+  border-radius:8px;
+  text-decoration:none;
+  font-size:15px;
+  transition:0.3s;
+}
+
+.signin-btn:hover{
+  background:#e8f1ff;
+}
+
+
+/* MOBILE */
+@media(max-width:600px){
+  form{grid-template-columns:1fr;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <h1>Create Your Stackly Account</h1>
+
+  <form id="signupForm">
+
+    <div>
+      <label>First Name</label>
+      <input type="text" id="firstname" placeholder="John" required>
+    </div>
+
+    <div>
+      <label>Last Name</label>
+      <input type="text" id="lastname" placeholder="Doe" required>
+    </div>
+
+    <div>
+      <label>Email</label>
+      <input type="email" id="email" placeholder="example@gmail.com" required>
+    </div>
+
+    <div>
+      <label>Phone</label>
+      <input type="text" id="phone" maxlength="10" placeholder="9876543210" required>
+    </div>
+
+    <div class="full">
+      <label>Address</label>
+      <input type="text" id="address" placeholder="Street, Area" required>
+    </div>
+
+    <div>
+      <label>City</label>
+      <input type="text" id="city" required>
+    </div>
+
+    <div>
+      <label>Pincode</label>
+      <input type="text" id="pincode" maxlength="6" required>
+    </div>
+
+    <div>
+      <label>Password</label>
+      <input type="password" id="password" minlength="6" required>
+    </div>
+
+    <div>
+      <label>Confirm Password</label>
+      <input type="password" id="confirmPassword" minlength="6" required>
+    </div>
+
+    <div class="full">
+      <label>About You</label>
+      <textarea id="about" placeholder="Tell something..."></textarea>
+    </div>
+
+    <button type="submit">Create Account</button>
+    <!-- New SIGN IN button -->
+    <a href="signin1.html" class="signin-btn">Sign In</a>
+
+</form>
+
+  </form>
+</div>
+
+<div class="success" id="successBox">✔ Account created! Redirecting...</div>
+
+<script>
+/* =========  FORCE INPUT RULES ========= */
+document.getElementById("firstname").addEventListener("input", onlyLetters);
+document.getElementById("lastname").addEventListener("input", onlyLetters);
+document.getElementById("city").addEventListener("input", onlyLetters);
+document.getElementById("phone").addEventListener("input", onlyDigits);
+document.getElementById("pincode").addEventListener("input", onlyDigits);
+
+function onlyLetters(){ this.value = this.value.replace(/[^A-Za-z ]/g,''); }
+function onlyDigits(){ this.value = this.value.replace(/[^0-9]/g,''); }
+
+/* =========  FORM VALIDATION ========= */
+document.getElementById("signupForm").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  let first = firstname.value.trim();
+  let last  = lastname.value.trim();
+  let emailVal = email.value.trim();
+  let phoneVal = phone.value.trim();
+  let pin = pincode.value.trim();
+  let pwd = password.value.trim();
+  let cpwd = confirmPassword.value.trim();
+
+  if(first=="" || last=="" || emailVal=="" || phoneVal=="" || pin=="" || pwd=="" || cpwd==""){
+    alert("Please fill all fields.");
+    return;
+  }
+
+  if(phoneVal.length !== 10){
+    alert("Phone number must be 10 digits.");
+    return;
+  }
+
+  if(pin.length !== 6){
+    alert("Pincode must be 6 digits.");
+    return;
+  }
+
+  if(pwd !== cpwd){
+    alert("Passwords do not match!");
+    return;
+  }
+
+  document.getElementById("successBox").style.display = "block";
+
+  setTimeout(()=>{
+    window.location.href = "4041.html";  // REDIRECT
+  },1500);
+
+});
+</script>
+
+</body>
+</html>
+
+
+</body>
+</html>
